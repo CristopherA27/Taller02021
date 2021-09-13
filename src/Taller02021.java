@@ -40,6 +40,18 @@ public class Taller02021 {
 		s.close();		
 	}
 	
+	public static int buscarEnLista(String [] lista,int cantidad,String dato) {
+		for(int i=0;i<cantidad;i++) {
+			if(lista[i]== null) {
+				break;
+			}
+			if(lista[i].equalsIgnoreCase(dato)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 
 	public static void main(String[] args) throws FileNotFoundException {
 		String [] lnombres = new String[200];
