@@ -26,16 +26,24 @@ public class Taller02021 {
 		return cont;
 	}
 	
-	public static void leerstatus(String [] listaPaseMovilidad) throws FileNotFoundException {
+	public static void leerStatus(String [] lruts,String [] listaPaseMovilidad,int cantClientes) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("status.txt"));
 		int cont = 0;
 		while(s.hasNextLine()) {
 			String line = s.nextLine();
 			String [] partes = line.split(",");
-			String paseMovilidad = partes[0];
-			String rut = partes[1];
+			String rut = partes[0];
+			int posBuscado = buscarEnLista(lruts, cantClientes, rut);
+			if(posBuscado != -1) {
+				String paseMovilidad = partes[1];
+				listaPaseMovilidad[posBuscado] = paseMovilidad;
+			}
+
+				
+			
+			/*String paseMovilidad = partes[1];
 			listaPaseMovilidad[cont] = paseMovilidad;
-			cont++;
+			cont++;*/
 		}
 		s.close();		
 	}
@@ -52,6 +60,12 @@ public class Taller02021 {
 		return -1;
 	}
 	
+	public static void desplegar(String []lista,String [] lista2 ,int cantidad) {
+		for(int i=0;i<cantidad;i++) {
+			System.out.println(lista[i]+" y "+lista2[i]);
+		}
+	}
+	
 
 	public static void main(String[] args) throws FileNotFoundException {
 		String [] lnombres = new String[200];
@@ -61,8 +75,11 @@ public class Taller02021 {
 		int [] lsaldos = new int[200];
 		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		String [] listaPaseMovilidad = new String[cantClientes];
+		leerStatus(lruts, listaPaseMovilidad, cantClientes);
+		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
+		
+		
 
-		System.out.println("Ahora si estamos listos para empezar");
 	}
 
 }

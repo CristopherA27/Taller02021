@@ -1,0 +1,4 @@
+Juanito,Pérez,1.111.111-1,ABC123,20000
+Jose,Peralta,8.291.189-7,ABC456,40000
+Juan,Prieto,7.318.571-6,ABC789,60000
+Javier,Quintanilla,5.771.818-3,DEF123,80000
