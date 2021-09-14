@@ -28,7 +28,6 @@ public class Taller02021 {
 	
 	public static void leerStatus(String [] lruts,String [] listaPaseMovilidad,int cantClientes) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("status.txt"));
-		int cont = 0;
 		while(s.hasNextLine()) {
 			String line = s.nextLine();
 			String [] partes = line.split(",");
@@ -38,14 +37,34 @@ public class Taller02021 {
 				String paseMovilidad = partes[1];
 				listaPaseMovilidad[posBuscado] = paseMovilidad;
 			}
-
-				
-			
-			/*String paseMovilidad = partes[1];
-			listaPaseMovilidad[cont] = paseMovilidad;
-			cont++;*/
 		}
 		s.close();		
+	}
+	
+	public static void leerPeliculas(String [] lpeliculas,String [] ltipos,boolean [][] matrizMañana,boolean [][] matrizTarde) throws FileNotFoundException {
+		Scanner s = new Scanner(new File("peliculas.txt"));
+		int cont = 0;
+		while(s.hasNextLine()) {
+			String line = s.nextLine();
+			String [] partes = line.split(",");
+			String nombrePelicula = partes[0];
+			String tipo = partes[1];
+			int recaudacion = Integer.parseInt(partes[2]);
+			lpeliculas[cont] = nombrePelicula;
+			ltipos[cont] = tipo;
+			int numeroSala = Integer.parseInt(partes[3]);
+			while(numeroSala ==1 || numeroSala ==2 ||numeroSala ==3) {
+				String horario = partes[4];
+				if(horario.equalsIgnoreCase("M")) {
+					for(int i=1;i<=3;i++) {
+						
+					}
+				}
+				
+			}
+			
+		}
+		
 	}
 	
 	public static int buscarEnLista(String [] lista,int cantidad,String dato) {
@@ -66,6 +85,12 @@ public class Taller02021 {
 		}
 	}
 	
+	public static void rellenarLista(int [] lsalas) {
+		for(int i=0;i<=2;i++) {
+			lsalas[i]=i+1;
+		}
+	}
+	
 
 	public static void main(String[] args) throws FileNotFoundException {
 		String [] lnombres = new String[200];
@@ -73,9 +98,19 @@ public class Taller02021 {
 		String [] lruts = new String[200];
 		String [] lcontraseñas = new String[200];
 		int [] lsaldos = new int[200];
+		String [] lpeliculas = new String [200];
+		String [] ltipos = new String[200];
+		
+		int [] lsalas = new int[3];
+		rellenarLista(lsalas);
+		
+		boolean [][] matrizMañana = new boolean[1][3];//[FILAS][COLUMNAS]
+		boolean [][] matrizTarde = new boolean[1][3];//[FILAS][COLUMNAS]
+		
 		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
+
 		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
 		
 		
