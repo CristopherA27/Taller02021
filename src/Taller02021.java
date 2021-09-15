@@ -62,6 +62,7 @@ public class Taller02021 {
 							matrizMañana[cont][numeroSala] = true;
 							//me quede aca xd
 							//vio2
+							//ponte vio pa la wea
 						}
 					}
 				}
