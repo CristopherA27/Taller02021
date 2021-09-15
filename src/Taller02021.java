@@ -60,6 +60,7 @@ public class Taller02021 {
 					for(int columna=1;columna<=3;columna++) {
 						for(int fila=0;fila<cont;fila++) {
 							matrizMañana[cont][numeroSala] = true;
+							//me quede aca xd
 						}
 					}
 				}
