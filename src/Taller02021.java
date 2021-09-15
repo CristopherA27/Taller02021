@@ -52,15 +52,15 @@ public class Taller02021 {
 			int recaudacion = Integer.parseInt(partes[2]);
 			lpeliculas[cont] = nombrePelicula;
 			ltipos[cont] = tipo;
+			cont++;
 			int numeroSala = Integer.parseInt(partes[3]);
 			while(numeroSala ==1 || numeroSala ==2 ||numeroSala ==3) {
 				String horario = partes[4];
 				if(horario.equalsIgnoreCase("M")) {
-					for(int i=1;i<=3;i++) {
+					for(int fila=1;fila<=3;fila++) {
 						
 					}
 				}
-				
 			}
 			
 		}
