@@ -57,8 +57,10 @@ public class Taller02021 {
 			while(numeroSala ==1 || numeroSala ==2 ||numeroSala ==3) {
 				String horario = partes[4];
 				if(horario.equalsIgnoreCase("M")) {
-					for(int fila=1;fila<=3;fila++) {
-						
+					for(int columna=1;columna<=3;columna++) {
+						for(int fila=0;fila<cont;fila++) {
+							matrizMañana[cont][numeroSala] = true;
+						}
 					}
 				}
 			}
