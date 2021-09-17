@@ -54,7 +54,8 @@ public class Taller02021 {
 			ltipos[cont] = tipo;
 			listaRecaudacionPelicula[cont] = recaudacion;
 			int numeroSala = Integer.parseInt(partes[3]);
-			while(numeroSala ==1 || numeroSala ==2 ||numeroSala ==3) {
+			
+			/*while(numeroSala ==1 || numeroSala ==2 ||numeroSala ==3) {
 				String horario = partes[4];
 				if(horario.equalsIgnoreCase("M")) {
 					for(int fila=0;fila<200;fila++) {
@@ -70,7 +71,7 @@ public class Taller02021 {
 						}
 					}
 				}
-			}
+			}*/
 			cont++;
 
 			
@@ -90,15 +91,15 @@ public class Taller02021 {
 		return -1;
 	}
 	
-	public static void desplegar(String []lista,String [] lista2 ,int cantidad) {
+	public sta*tic void desplegar(String []lista,String [] lista2 ,int cantidad) {
 		for(int i=0;i<cantidad;i++) {
 			System.out.println(lista[i]+" y "+lista2[i]);
 		}
 	}
 	
-	public static void desplegarMatriz(boolean [][]matriz1) {
-		for(int i=0;i<5;i++) {
-			for(int j=0;j<5;j++) {
+	public static void desplegarMatriz(boolean [][] matriz1) {
+		for(int i=0;i<2;i++) {
+			for(int j=0;j<3;j++) {
 				System.out.println(matriz1[i][j]);
 			}
 		}
@@ -132,7 +133,7 @@ public class Taller02021 {
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
 		desplegarMatriz(matrizMañana);
-		desplegarMatriz(matrizTarde);
+		//desplegarMatriz(matrizTarde);
 		
 
 		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
