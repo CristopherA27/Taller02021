@@ -53,7 +53,28 @@ public class Taller02021 {
 			lpeliculas[cont] = nombrePelicula;
 			ltipos[cont] = tipo;
 			listaRecaudacionPelicula[cont] = recaudacion;
-			int numeroSala = Integer.parseInt(partes[3]);
+			for(int i=3;i<20;i++) {
+				int numeroSala = Integer.parseInt(partes[i]);
+				String horario = partes[i+1];
+				if(partes[i+2].equals("")) {
+					break;
+				}else {
+					numeroSala = Integer.parseInt(partes[i]);
+					horario = partes[i+1];
+				}
+
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			/*while(numeroSala ==1 || numeroSala ==2 ||numeroSala ==3) {
 				String horario = partes[4];
