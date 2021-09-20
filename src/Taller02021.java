@@ -65,7 +65,6 @@ public class Taller02021 {
 			}
 			cont++;
 			
-			
 			/*while(numeroSala ==1 || numeroSala ==2 ||numeroSala ==3) {
 				String horario = partes[4];
 				if(horario.equalsIgnoreCase("M")) {
@@ -82,10 +81,7 @@ public class Taller02021 {
 						}
 					}
 				}
-			}*/
-			cont++;
-
-			
+			}*/		
 		}
 		
 	}
