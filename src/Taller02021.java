@@ -46,7 +46,7 @@ public class Taller02021 {
 		int cont = 0;
 		while(s.hasNextLine()) {
 			String line = s.nextLine();
-			System.out.println(line);
+			//System.out.println(line);
 			String [] partes = line.split(",");
 			String nombrePelicula = partes[0];
 			String tipo = partes[1];
@@ -55,7 +55,7 @@ public class Taller02021 {
 				int numeroSala = Integer.parseInt(partes[i]);
 				numeroSala--;
 				String horario = partes[i+1];
-				System.out.println("\t"+numeroSala+" "+horario);
+				//System.out.println("\t"+numeroSala+" "+horario);
 				if(horario.equalsIgnoreCase("M")) {
 					matrizMañana[cont][numeroSala]=true;
 
@@ -108,7 +108,31 @@ public class Taller02021 {
 		}
 	}
 	
-
+	public static String verificarRut(String rutNormal) {
+		String nuevoRut = rutNormal.replace(".","");
+		nuevoRut = nuevoRut.replace("-","");
+		nuevoRut = nuevoRut.replace("K","k");
+		return nuevoRut;
+	}
+	//Esta Lista
+	public static void horariosDisponiblesPelicula(String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
+		System.out.print("Ingrese el nombre de la pelicula para ver sus horarios: ");
+		String pelicula = leer.nextLine();
+		int posPelicula = buscarEnLista(lpeliculas, cantPeliculas, pelicula);
+		if(posPelicula == -1) {
+			System.out.println("La pelicula ingresada no existe");
+		}else {
+			for(int j=0;j<3;j++) {
+				if(matrizMañana[posPelicula][j] == true) {
+					System.out.print(j+1+"M"+"\n");
+				}
+				if(matrizTarde[posPelicula][j] == true) {
+					System.out.print(j+1+"T"+"\n");
+				}
+			}
+		}
+	}
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		String [] lnombres = new String[200];
 		String [] lapellidos  = new String[200];
@@ -135,9 +159,7 @@ public class Taller02021 {
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
-		//desplegarMatriz(matrizMañana);
-		//desplegarMatriz(matrizTarde);
-
+		horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
 		
 		/*for(int i=0;i<7;i++) {
@@ -149,5 +171,6 @@ public class Taller02021 {
 		
 
 	}
+	public static Scanner leer = new Scanner(System.in);
 
 }
