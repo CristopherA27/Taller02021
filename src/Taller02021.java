@@ -51,7 +51,6 @@ public class Taller02021 {
 			String nombrePelicula = partes[0];
 			String tipo = partes[1];
 			int recaudacion = Integer.parseInt(partes[2]);
-
 			for(int i=3;i<partes.length;i+=2) {
 				int numeroSala = Integer.parseInt(partes[i]);
 				numeroSala--;
