@@ -46,27 +46,24 @@ public class Taller02021 {
 		int cont = 0;
 		while(s.hasNextLine()) {
 			String line = s.nextLine();
+			System.out.println(line);
 			String [] partes = line.split(",");
 			String nombrePelicula = partes[0];
 			String tipo = partes[1];
 			int recaudacion = Integer.parseInt(partes[2]);
-			//
-			
-			//ingresarHorarioMatriz(cont, horario, numeroSala, matrizMañana, matrizTarde);
-			for(int i=3;i<=9;i+=2) {
-				if(partes[i].equals(null)) {
-					break;
-				}
+
+			for(int i=3;i<partes.length;i+=2) {
 				int numeroSala = Integer.parseInt(partes[i]);
+				numeroSala--;
 				String horario = partes[i+1];
+				System.out.println("\t"+numeroSala+" "+horario);
 				if(horario.equalsIgnoreCase("M")) {
-					matrizMañana[numeroSala][cont]=true;
-					//Me sale error en la linea de arriba
-					//aaaaaaaaaaaa
-					
+					matrizMañana[cont][numeroSala]=true;
+
 				}else{
 					if(horario.equalsIgnoreCase("T")) {
-						matrizTarde[numeroSala][cont]=true;
+						matrizTarde[cont][numeroSala]=true;
+						
 					}
 				}
 			}
@@ -79,24 +76,6 @@ public class Taller02021 {
 		return cont;
 	}
 	
-	public static void ingresarHorarioMatriz(int contador,String horario,int numeroSala,boolean [][] matrizMañana,boolean [][] matrizTarde) {
-		if(horario.equalsIgnoreCase("M")) {
-			for(int fila=0;fila<9;fila++) {
-				for(int columna=0;columna<3;columna++) {
-					matrizMañana[contador][numeroSala]=true;
-				}
-			}
-		}else{
-			if(horario.equalsIgnoreCase("T")) {
-				for(int fila=0;fila<100;fila++) {
-					for(int columna=0;columna<3;columna++) {
-						matrizTarde[contador][numeroSala]=true;
-					}
-				}
-				
-			}
-		}
-	}
 	
 	public static int buscarEnLista(String [] lista,int cantidad,String dato) {
 		for(int i=0;i<cantidad;i++) {
@@ -140,9 +119,11 @@ public class Taller02021 {
 		String [] lpeliculas = new String [200];
 		String [] ltipos = new String[200];
 		int [] listaRecaudacionPelicula = new int[200];
-		
+		//
 		int [] lsalas = new int[3];
 		rellenarLista(lsalas);
+		//
+		
 		
 		boolean [][] matrizMañana = new boolean[100][3];//[FILAS][COLUMNAS] 100 por que es el contador de peliculas
 		
@@ -160,7 +141,7 @@ public class Taller02021 {
 
 		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
 		
-		/*for(int i=0;i<100;i++) {
+		/*for(int i=0;i<7;i++) {
 			for(int j=0;j<3;j++) {
 				System.out.print(matrizMañana[i][j]+" ");
 			}
