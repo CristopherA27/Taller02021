@@ -50,9 +50,7 @@ public class Taller02021 {
 			String nombrePelicula = partes[0];
 			String tipo = partes[1];
 			int recaudacion = Integer.parseInt(partes[2]);
-			lpeliculas[cont] = nombrePelicula;
-			ltipos[cont] = tipo;
-			listaRecaudacionPelicula[cont] = recaudacion;
+			//
 			int numeroSala = Integer.parseInt(partes[3]);
 			String horario = partes[4];
 			if(horario.equalsIgnoreCase("M")) {
@@ -64,19 +62,22 @@ public class Taller02021 {
 			}
 			//ingresarHorarioMatriz(cont, horario, numeroSala, matrizMañana, matrizTarde);
 			for(int i=5;i<9;i+=2) {
-				if(!partes[i].equals(null)) {
-					numeroSala = Integer.parseInt(partes[i]);
-					horario = partes[i+1];
-					if(horario.equalsIgnoreCase("M")) {
-						matrizMañana[cont][numeroSala]=true;
-					}else{
-						if(horario.equalsIgnoreCase("T")) {
-							matrizTarde[cont][numeroSala]=true;
-						}
+				if(partes[i].equals(null)) {
+					break;
+				}
+				numeroSala = Integer.parseInt(partes[i]);
+				horario = partes[i+1];
+				if(horario.equalsIgnoreCase("M")) {
+					matrizMañana[cont][numeroSala]=true;
+				}else{
+					if(horario.equalsIgnoreCase("T")) {
+						matrizTarde[cont][numeroSala]=true;
 					}
-					//ingresarHorarioMatriz(cont, horario, numeroSala, matrizMañana, matrizTarde);
 				}
 			}
+			lpeliculas[cont] = nombrePelicula;
+			ltipos[cont] = tipo;
+			listaRecaudacionPelicula[cont] = recaudacion;
 			cont++;
 		}
 		s.close();
