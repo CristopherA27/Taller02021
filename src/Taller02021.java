@@ -51,27 +51,22 @@ public class Taller02021 {
 			String tipo = partes[1];
 			int recaudacion = Integer.parseInt(partes[2]);
 			//
-			int numeroSala = Integer.parseInt(partes[3]);
-			String horario = partes[4];
-			if(horario.equalsIgnoreCase("M")) {
-				matrizMañana[cont][numeroSala]=true;
-			}else{
-				if(horario.equalsIgnoreCase("T")) {
-					matrizTarde[cont][numeroSala]=true;
-				}
-			}
+			
 			//ingresarHorarioMatriz(cont, horario, numeroSala, matrizMañana, matrizTarde);
-			for(int i=5;i<9;i+=2) {
+			for(int i=3;i<=9;i+=2) {
 				if(partes[i].equals(null)) {
 					break;
 				}
-				numeroSala = Integer.parseInt(partes[i]);
-				horario = partes[i+1];
+				int numeroSala = Integer.parseInt(partes[i]);
+				String horario = partes[i+1];
 				if(horario.equalsIgnoreCase("M")) {
-					matrizMañana[cont][numeroSala]=true;
+					matrizMañana[numeroSala][cont]=true;
+					//Me sale error en la linea de arriba
+					//aaaaaaaaaaaa
+					
 				}else{
 					if(horario.equalsIgnoreCase("T")) {
-						matrizTarde[cont][numeroSala]=true;
+						matrizTarde[numeroSala][cont]=true;
 					}
 				}
 			}
