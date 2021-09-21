@@ -137,7 +137,7 @@ public class Taller02021 {
 		
 		boolean [][] matrizMañana = new boolean[100][3];//[FILAS][COLUMNAS] 100 por que es el contador de peliculas
 		
-		//Formato matrizMañana y Tarde
+
 		
 		
 		boolean [][] matrizTarde = new boolean[100][3];//[FILAS][COLUMNAS]
