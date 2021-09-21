@@ -41,7 +41,7 @@ public class Taller02021 {
 		s.close();		
 	}
 	
-	public static void leerPeliculas(String [] lpeliculas,String [] ltipos,int [] listaRecaudacionPelicula,boolean [][] matrizMañana,boolean [][] matrizTarde) throws FileNotFoundException {
+	public static int leerPeliculas(String [] lpeliculas,String [] ltipos,int [] listaRecaudacionPelicula,boolean [][] matrizMañana,boolean [][] matrizTarde) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("peliculas.txt"));
 		int cont = 0;
 		while(s.hasNextLine()) {
@@ -55,24 +55,37 @@ public class Taller02021 {
 			listaRecaudacionPelicula[cont] = recaudacion;
 			int numeroSala = Integer.parseInt(partes[3]);
 			String horario = partes[4];
-			ingresarHorarioMatriz(cont, horario, numeroSala, matrizMañana, matrizTarde);
+			if(horario.equalsIgnoreCase("M")) {
+				matrizMañana[cont][numeroSala]=true;
+			}else{
+				if(horario.equalsIgnoreCase("T")) {
+					matrizTarde[cont][numeroSala]=true;
+				}
+			}
+			//ingresarHorarioMatriz(cont, horario, numeroSala, matrizMañana, matrizTarde);
 			for(int i=5;i<9;i+=2) {
 				if(!partes[i].equals(null)) {
 					numeroSala = Integer.parseInt(partes[i]);
 					horario = partes[i+1];
-					ingresarHorarioMatriz(cont, horario, numeroSala, matrizMañana, matrizTarde);
-				}else {
-					
+					if(horario.equalsIgnoreCase("M")) {
+						matrizMañana[cont][numeroSala]=true;
+					}else{
+						if(horario.equalsIgnoreCase("T")) {
+							matrizTarde[cont][numeroSala]=true;
+						}
+					}
+					//ingresarHorarioMatriz(cont, horario, numeroSala, matrizMañana, matrizTarde);
 				}
 			}
 			cont++;
 		}
 		s.close();
+		return cont;
 	}
 	
 	public static void ingresarHorarioMatriz(int contador,String horario,int numeroSala,boolean [][] matrizMañana,boolean [][] matrizTarde) {
 		if(horario.equalsIgnoreCase("M")) {
-			for(int fila=0;fila<100;fila++) {
+			for(int fila=0;fila<9;fila++) {
 				for(int columna=0;columna<3;columna++) {
 					matrizMañana[contador][numeroSala]=true;
 				}
@@ -145,18 +158,18 @@ public class Taller02021 {
 		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
-		leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
+		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
 		//desplegarMatriz(matrizMañana);
 		//desplegarMatriz(matrizTarde);
 
 		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
 		
-		for(int i=0;i<100;i++) {
+		/*for(int i=0;i<100;i++) {
 			for(int j=0;j<3;j++) {
 				System.out.print(matrizMañana[i][j]+" ");
 			}
 			System.out.println();
-		}
+		}*/
 		
 
 	}
