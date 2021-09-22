@@ -88,12 +88,6 @@ public class Taller02021 {
 		return -1;
 	}
 	
-	public static void desplegar(int []lista) {
-		for(int i=1;i<=10;i++) {
-			System.out.print(lista[i]+"\n");
-		}
-	}
-	
 	public static void crearLista(int [] lista) {
 		for(int i=1;i<=10;i++) {
 			lista[i] = i;
@@ -103,7 +97,7 @@ public class Taller02021 {
 	public static void desplegarMatriz(int [][] matriz) {
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<30;j++) {
-				System.out.print("\t"+matriz[i][j]+"|");
+				System.out.print(matriz[i][j]+"|");
 			}
 			System.out.println();
 		}
@@ -155,18 +149,15 @@ public class Taller02021 {
 			}
 		}
 	}
+	//todo esta aca
 	public static void desplegar1(int[]lista,int[][]matriz) {
-		crearLista(lista);
 		crearMatriz(matriz);
-		/*for(int i=0;i<10;i++) {
-			for(int j=0;j<30;j++) {
-				crearMatriz(matriz);
-				
-			}
-		}*/
+		for(int i=1;i<=10;i++) {
+			lista[i] = i;
+			System.out.println(lista[i]);
+		}
+		desplegarMatriz(matriz);
 	}
-	
-	
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		String [] lnombres = new String[200];
@@ -191,9 +182,7 @@ public class Taller02021 {
 		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		
 		int [][] ma = new int[10][30]; 
-		crearLista(lsalas);
 		desplegar1(lsalas, ma);
-		//crearMatriz(ma);
 
 
 		
