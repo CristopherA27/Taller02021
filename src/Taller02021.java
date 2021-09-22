@@ -88,12 +88,7 @@ public class Taller02021 {
 		return -1;
 	}
 	
-	public static void crearLista(int [] lista) {
-		for(int i=1;i<=10;i++) {
-			lista[i] = i;
-		}
-	}
-	
+	/*
 	public static void desplegarMatriz(int [][] matriz) {
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<30;j++) {
@@ -101,7 +96,7 @@ public class Taller02021 {
 			}
 			System.out.println();
 		}
-	}
+	}*/
 	
 	public static String verificarRut(String rutNormal) {
 		String nuevoRut = rutNormal.replace(".","");
@@ -110,8 +105,7 @@ public class Taller02021 {
 		return nuevoRut;
 	}
 	//sirve para crear la matriz
-	public static void matrizAsientos(int [] lista,char [] listaLetras) {
-		int [][]matriz = new int[10][30];
+	public static void crearMatrizSala(int [] lista,char [] listaLetras,int [][]matriz) {
 		for(int fila=0;fila<10;fila++) {
 			for(int columna=0;columna<30;columna++) {
 				if(columna<5 && fila<4 ) {
@@ -127,8 +121,9 @@ public class Taller02021 {
 					matriz[fila][columna]=-1;
 				}
 			}
-			//%=resto
 		}
+     }
+	public static void imprimirSala(int [] lista,char [] listaLetras,int [][]matriz) {
 		for(int k=0;k<30;k++) {
 			lista[k]= k+1;
 			System.out.print("\t"+lista[k]);
@@ -142,7 +137,7 @@ public class Taller02021 {
 			}
 			System.out.println("");	
 		}
-     }
+	}
 	
 	//Esta Lista
 	public static void horariosDisponiblesPelicula(String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
@@ -181,17 +176,35 @@ public class Taller02021 {
 		
 		boolean [][] matrizTarde = new boolean[100][3];//[FILAS][COLUMNAS]
 		
+		int [] listanumeros = new int[30];
+		char[] listaLetras = {'A','B','C','D','E','F','G','H','I','J'};
+		
 		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
 		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
-		int [] listanumeros = new int[30];
-		char[] listaLetras = {'A','B','C','D','E','F','G','H','I','J'};
-		int [][] ma = new int[10][30]; 
-		matrizAsientos(listanumeros,listaLetras);
-
-
+		
+		int [][] matriz1M =new int[10][30];
+		crearMatrizSala(listanumeros, listaLetras, matriz1M);
+		//imprimirSala(listanumeros, listaLetras, matriz1M);
+		
+		int [][] matriz2M =new int[10][30];
+		crearMatrizSala(listanumeros, listaLetras, matriz2M);
+	
+		int [][] matriz3M =new int[10][30];
+		crearMatrizSala(listanumeros, listaLetras, matriz3M);
+	
+		int [][] matriz1T =new int[10][30];
+		crearMatrizSala(listanumeros, listaLetras, matriz1T);
+		
+		int [][] matriz2T =new int[10][30];
+		crearMatrizSala(listanumeros, listaLetras, matriz2T);
+		
+		int [][] matriz3T =new int[10][30];
+		crearMatrizSala(listanumeros, listaLetras, matriz3T);
+		
+		
 		
 		
 		
