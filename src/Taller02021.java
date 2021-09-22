@@ -109,40 +109,8 @@ public class Taller02021 {
 		nuevoRut = nuevoRut.replace("K","k");
 		return nuevoRut;
 	}
-	
-	public static void crearMatriz(int [][]matriz) {
-		int cont = 0;
-		for(int fila=0;fila<10;fila++) {
-			for(int columna=0;columna<30;columna++) {
-				if(columna<5 && fila<4 ) {
-					matriz[fila][columna]=5;
-				}
-				if(columna>24 && fila<4) {
-					matriz[fila][columna]=5;
-				}
-				if(columna%2==0 && fila<4 && columna>4 && columna<25) {
-					matriz[fila][columna]=-1;
-				}
-				if(fila>=4 &&columna>0 && columna<30 && columna%2!=0) {
-					matriz[fila][columna]=-1;
-				}
-			}
-			//%=resto
-			
-		}
-		
-	}
-	/**
-	public static void matrizasientos(String []args) {
-		
-		
-		
-		
-		char[] listaLetras = {'a','b','c','d','e','f','g','h','i','j'};
-				
-		
-	
-	
+	//sirve para crear la matriz
+	public static void matrizAsientos(int [] lista,char [] listaLetras) {
 		int [][]matriz = new int[10][30];
 		for(int fila=0;fila<10;fila++) {
 			for(int columna=0;columna<30;columna++) {
@@ -160,20 +128,22 @@ public class Taller02021 {
 				}
 			}
 			//%=resto
-			
 		}
-		
+		for(int k=0;k<30;k++) {
+			lista[k]= k+1;
+			System.out.print("\t"+lista[k]);
+		}
+		System.out.println();
 		for(int i = 0 ; i<10 ; i++) {
-		
-			System.out.print(listaLetras[i]+"|");
+			System.out.print(listaLetras[i]+" ");
 			for(int c= 0;c<30;c++) {				
-				System.out.print(matriz[i][c]+"|");
+				System.out.print("\t"+matriz[i][c]);
 			
 			}
 			System.out.println("");	
 		}
      }
-	*/
+	
 	//Esta Lista
 	public static void horariosDisponiblesPelicula(String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
 		System.out.print("Ingrese el nombre de la pelicula para ver sus horarios: ");
@@ -192,15 +162,8 @@ public class Taller02021 {
 			}
 		}
 	}
-	//todo esta aca
-	public static void desplegar1(int[]lista,int[][]matriz) {
-		crearMatriz(matriz);
-		for(int i=1;i<=10;i++) {
-			lista[i] = i;
-			System.out.println(lista[i]);
-		}
-		desplegarMatriz(matriz);
-	}
+
+
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		String [] lnombres = new String[200];
@@ -223,9 +186,10 @@ public class Taller02021 {
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
 		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
-		
+		int [] listanumeros = new int[30];
+		char[] listaLetras = {'A','B','C','D','E','F','G','H','I','J'};
 		int [][] ma = new int[10][30]; 
-		desplegar1(lsalas, ma);
+		matrizAsientos(listanumeros,listaLetras);
 
 
 		
