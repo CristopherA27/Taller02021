@@ -122,7 +122,7 @@ public class Taller02021 {
 				}
 			}
 		}
-     }
+    }
 	public static void imprimirSala(int [] lista,char [] listaLetras,int [][]matriz) {
 		for(int k=0;k<30;k++) {
 			lista[k]= k+1;
@@ -140,7 +140,7 @@ public class Taller02021 {
 	}
 	
 	//Esta Lista
-	public static void horariosDisponiblesPelicula(String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
+	public static int horariosDisponiblesPelicula(String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
 		System.out.print("Ingrese el nombre de la pelicula para ver sus horarios: ");
 		String pelicula = leer.nextLine();
 		int posPelicula = buscarEnLista(lpeliculas, cantPeliculas, pelicula);
@@ -156,17 +156,53 @@ public class Taller02021 {
 				}
 			}
 		}
+		return posPelicula;
 
 	}
-	public static void obtenerSalaDeFuncion(int [] listanumeros,char [] listaLetras,int[][]matriz1M) {
+	public static void obtenerSalaDeFuncion(int [] listanumeros,char [] listaLetras,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
 		System.out.print("Seleccione la funcion a la que desea comprar entradas:");
 		String funcion = leer.nextLine();
 		for(int i=1;i<=3;i++) {
-			if(funcion.equals(i+"M")) {
-				imprimirSala(listanumeros, listaLetras, matriz1M);
+			if(funcion.equalsIgnoreCase(i+"M")) {
+				switch(i) {
+				case(1):
+					System.out.println("\t-------------------------------------------------------SALA "+i+"M-------------------------------------------------\t|");
+					imprimirSala(listanumeros, listaLetras, matriz1M);break;
+				case(2):
+					System.out.println("\t-------------------------------------------------------SALA "+i+"M-------------------------------------------------\t|");
+					imprimirSala(listanumeros, listaLetras, matriz2M);break;
+				case(3):
+					System.out.println("\t-------------------------------------------------------SALA "+i+"M-------------------------------------------------\t|");
+					imprimirSala(listanumeros, listaLetras, matriz3M);break;
+				default:break;
+				}
+			}else if(funcion.equalsIgnoreCase(i+"T")) {
+				switch(i) {
+				case(1):
+					System.out.println("\t-------------------------------------------------------SALA "+i+"T-------------------------------------------------\t|");
+					imprimirSala(listanumeros, listaLetras, matriz1T);break;
+				case(2):
+					System.out.println("\t-------------------------------------------------------SALA "+i+"T-------------------------------------------------\t|");
+					imprimirSala(listanumeros, listaLetras, matriz2T);break;
+				case(3):
+					System.out.println("\t-------------------------------------------------------SALA "+i+"T-------------------------------------------------\t|");
+					imprimirSala(listanumeros, listaLetras, matriz3T);break;
+				default:break;
+				}
 			}
 		}
-		
+	}
+	
+	public static void comprarEntrada(int [] listanumeros,char [] listaLetras) {
+		//Se podria obtener la i dela funcion anteior y la T o M para reconocer la matriz donde hara cambios.
+		System.out.println("Cuantos asientos desea comprar:");
+		int cantAsientos = leer.nextInt();
+		for(int i=0;i<cantAsientos;i++) {
+			System.out.print("Ingrese la letra de la fila que desea comprar:");
+			String letraFila = leer.nextLine();
+			System.out.print("Ingrese el numero de la columna que desea comprar: ");
+			int numeroColumna = leer.nextInt();
+		}
 	}
 
 
@@ -193,10 +229,9 @@ public class Taller02021 {
 		int [][] matriz1M =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz1M);
 		//imprimirSala(listanumeros, listaLetras, matriz1M);
-		
+		//
 		int [][] matriz2M =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz2M);
-	
 		int [][] matriz3M =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz3M);
 	
@@ -208,19 +243,15 @@ public class Taller02021 {
 		
 		int [][] matriz3T =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz3T);
-		
-		
-		
-		
+		//
 		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
-		horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
+		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		
-		obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M);
-		
-		
+		//obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M,matriz2M,matriz3M,matriz1T,matriz2T,matriz3T);
+	
 		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
 		
 		/*for(int i=0;i<7;i++) {
@@ -229,6 +260,9 @@ public class Taller02021 {
 			}
 			System.out.println();
 		}*/
+		for(int i=0;i<30;i++) {
+			System.out.println(listanumeros[i]);
+		}
 		
 
 	}
