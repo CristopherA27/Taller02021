@@ -156,6 +156,17 @@ public class Taller02021 {
 				}
 			}
 		}
+
+	}
+	public static void obtenerSalaDeFuncion(int [] listanumeros,char [] listaLetras,int[][]matriz1M) {
+		System.out.print("Seleccione la funcion a la que desea comprar entradas:");
+		String funcion = leer.nextLine();
+		for(int i=1;i<=3;i++) {
+			if(funcion.equals(i+"M")) {
+				imprimirSala(listanumeros, listaLetras, matriz1M);
+			}
+		}
+		
 	}
 
 
@@ -179,12 +190,6 @@ public class Taller02021 {
 		int [] listanumeros = new int[30];
 		char[] listaLetras = {'A','B','C','D','E','F','G','H','I','J'};
 		
-		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
-		String [] listaPaseMovilidad = new String[cantClientes];
-		leerStatus(lruts, listaPaseMovilidad, cantClientes);
-		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
-		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
-		
 		int [][] matriz1M =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz1M);
 		//imprimirSala(listanumeros, listaLetras, matriz1M);
@@ -207,8 +212,13 @@ public class Taller02021 {
 		
 		
 		
+		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
+		String [] listaPaseMovilidad = new String[cantClientes];
+		leerStatus(lruts, listaPaseMovilidad, cantClientes);
+		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
+		horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		
-		
+		obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M);
 		
 		
 		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
