@@ -88,24 +88,24 @@ public class Taller02021 {
 		return -1;
 	}
 	
-	public static void desplegar(String []lista,String [] lista2 ,int cantidad) {
-		for(int i=0;i<cantidad;i++) {
-			System.out.println(lista[i]+" y "+lista2[i]);
+	public static void desplegar(int []lista) {
+		for(int i=1;i<=10;i++) {
+			System.out.print(lista[i]+"\n");
+		}
+	}
+	
+	public static void crearLista(int [] lista) {
+		for(int i=1;i<=10;i++) {
+			lista[i] = i;
 		}
 	}
 	
 	public static void desplegarMatriz(int [][] matriz) {
 		for(int i=0;i<10;i++) {
 			for(int j=0;j<30;j++) {
-				System.out.print(matriz[i][j]+"|");
+				System.out.print("\t"+matriz[i][j]+"|");
 			}
 			System.out.println();
-		}
-	}
-	
-	public static void rellenarLista(int [] lsalas) {
-		for(int i=0;i<=2;i++) {
-			lsalas[i]=i+1;
 		}
 	}
 	
@@ -119,7 +119,6 @@ public class Taller02021 {
 	public static void crearMatriz(int [][]matriz) {
 		int cont = 0;
 		for(int fila=0;fila<10;fila++) {
-			
 			for(int columna=0;columna<30;columna++) {
 				if(columna<5 && fila<4 ) {
 					matriz[fila][columna]=5;
@@ -156,6 +155,16 @@ public class Taller02021 {
 			}
 		}
 	}
+	public static void desplegar1(int[]lista,int[][]matriz) {
+		crearLista(lista);
+		crearMatriz(matriz);
+		/*for(int i=0;i<10;i++) {
+			for(int j=0;j<30;j++) {
+				crearMatriz(matriz);
+				
+			}
+		}*/
+	}
 	
 	
 	
@@ -169,8 +178,7 @@ public class Taller02021 {
 		String [] ltipos = new String[200];
 		int [] listaRecaudacionPelicula = new int[200];
 		//
-		int [] lsalas = new int[3];
-		rellenarLista(lsalas);
+		int [] lsalas = new int[11];
 		//
 		boolean [][] matrizMañana = new boolean[100][3];//[FILAS][COLUMNAS] 100 por que es el contador de peliculas
 		
@@ -183,8 +191,12 @@ public class Taller02021 {
 		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		
 		int [][] ma = new int[10][30]; 
-		crearMatriz(ma);
-		desplegarMatriz(ma);
+		crearLista(lsalas);
+		desplegar1(lsalas, ma);
+		//crearMatriz(ma);
+
+
+		
 		
 		
 		
