@@ -130,7 +130,50 @@ public class Taller02021 {
 			//%=resto
 			
 		}
+		
 	}
+	/**
+	public static void matrizasientos(String []args) {
+		
+		
+		
+		
+		char[] listaLetras = {'a','b','c','d','e','f','g','h','i','j'};
+				
+		
+	
+	
+		int [][]matriz = new int[10][30];
+		for(int fila=0;fila<10;fila++) {
+			for(int columna=0;columna<30;columna++) {
+				if(columna<5 && fila<4 ) {
+					matriz[fila][columna]=5;
+				}
+				if(columna>24 && fila<4) {
+					matriz[fila][columna]=5;
+				}
+				if(columna%2==0 && fila<4 && columna>4 && columna<25) {
+					matriz[fila][columna]=-1;
+				}
+				if(fila>=4 &&columna>0 && columna<30 && columna%2!=0) {
+					matriz[fila][columna]=-1;
+				}
+			}
+			//%=resto
+			
+		}
+		
+		for(int i = 0 ; i<10 ; i++) {
+		
+			System.out.print(listaLetras[i]+"|");
+			for(int c= 0;c<30;c++) {				
+				System.out.print(matriz[i][c]+"|");
+			
+			}
+			System.out.println("");	
+		}
+     }
+	*/
 	//Esta Lista
 	public static void horariosDisponiblesPelicula(String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
 		System.out.print("Ingrese el nombre de la pelicula para ver sus horarios: ");
