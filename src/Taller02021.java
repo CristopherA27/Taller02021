@@ -94,11 +94,12 @@ public class Taller02021 {
 		}
 	}
 	
-	public static void desplegarMatriz(boolean [][] matriz1) {
-		for(int i=0;i<100;i++) {
-			for(int j=0;j<3;j++) {
-				System.out.println(matriz1[i][j]);
+	public static void desplegarMatriz(int [][] matriz) {
+		for(int i=0;i<10;i++) {
+			for(int j=0;j<30;j++) {
+				System.out.print(matriz[i][j]+"|");
 			}
+			System.out.println();
 		}
 	}
 	
@@ -113,6 +114,29 @@ public class Taller02021 {
 		nuevoRut = nuevoRut.replace("-","");
 		nuevoRut = nuevoRut.replace("K","k");
 		return nuevoRut;
+	}
+	
+	public static void crearMatriz(int [][]matriz) {
+		int cont = 0;
+		for(int fila=0;fila<10;fila++) {
+			
+			for(int columna=0;columna<30;columna++) {
+				if(columna<5 && fila<4 ) {
+					matriz[fila][columna]=5;
+				}
+				if(columna>24 && fila<4) {
+					matriz[fila][columna]=5;
+				}
+				if(columna%2==0 && fila<4 && columna>4 && columna<25) {
+					matriz[fila][columna]=-1;
+				}
+				if(fila>=4 &&columna>0 && columna<30 && columna%2!=0) {
+					matriz[fila][columna]=-1;
+				}
+			}
+			//%=resto
+			
+		}
 	}
 	//Esta Lista
 	public static void horariosDisponiblesPelicula(String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
@@ -132,6 +156,8 @@ public class Taller02021 {
 			}
 		}
 	}
+	
+	
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		String [] lnombres = new String[200];
@@ -154,7 +180,16 @@ public class Taller02021 {
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
-		horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
+		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
+		
+		int [][] ma = new int[10][30]; 
+		crearMatriz(ma);
+		desplegarMatriz(ma);
+		
+		
+		
+		
+		
 		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
 		
 		/*for(int i=0;i<7;i++) {
