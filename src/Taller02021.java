@@ -165,30 +165,33 @@ public class Taller02021 {
 	public static String obtenerSalaDeFuncion(int [] listanumeros,String [] listaLetras,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
 		System.out.print("Seleccione la funcion a la que desea comprar entradas:");
 		String funcion = leer.nextLine();
+		String dato = "";
 		for(int i=1;i<=3;i++) {
 			if(funcion.equalsIgnoreCase(i+"M")) {
+				dato+="M";
 				switch(i) {
 				case(1):
-					System.out.println("\t-------------------------------------------------------SALA "+i+"M-------------------------------------------------\t|");
+					tituloMatriz(i,dato);
 					imprimirSala(listanumeros, listaLetras, matriz1M);break;
 				case(2):
-					System.out.println("\t-------------------------------------------------------SALA "+i+"M-------------------------------------------------\t|");
+					tituloMatriz(i,dato);
 					imprimirSala(listanumeros, listaLetras, matriz2M);break;
 				case(3):
-					System.out.println("\t-------------------------------------------------------SALA "+i+"M-------------------------------------------------\t|");
+					tituloMatriz(i,dato);
 					imprimirSala(listanumeros, listaLetras, matriz3M);break;
 				default:break;
 				}
 			}else if(funcion.equalsIgnoreCase(i+"T")) {
+				dato+="T";
 				switch(i) {
 				case(1):
-					System.out.println("\t-------------------------------------------------------SALA "+i+"T-------------------------------------------------\t|");
+					tituloMatriz(i,dato);
 					imprimirSala(listanumeros, listaLetras, matriz1T);break;
 				case(2):
-					System.out.println("\t-------------------------------------------------------SALA "+i+"T-------------------------------------------------\t|");
+					tituloMatriz(i,dato);
 					imprimirSala(listanumeros, listaLetras, matriz2T);break;
 				case(3):
-					System.out.println("\t-------------------------------------------------------SALA "+i+"T-------------------------------------------------\t|");
+					tituloMatriz(i,dato);
 					imprimirSala(listanumeros, listaLetras, matriz3T);break;
 				default:break;
 				}
@@ -197,6 +200,10 @@ public class Taller02021 {
 		return funcion;
 	}
 	
+	public static void tituloMatriz(int i,String dato) {
+		System.out.println("\t-------------------------------------------------------SALA "+i+dato+"-------------------------------------------------\t|");
+	}
+
 	public static void comprarEntrada(int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas ) {
 		String funcion = obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 		System.out.print("Cuantos asientos desea comprar:");
@@ -210,15 +217,19 @@ public class Taller02021 {
 			System.out.println(posLetra);
 			System.out.print("Ingrese el numero de la columna que desea comprar: ");
 			int numeroColumna = leer.nextInt();
+			leer.nextLine();
 			int posNumero = buscarEnListaNumeros(listanumeros, 30, numeroColumna);
 			System.out.println(posNumero);
+			String dato  = "";
 			for(int j=1;j<=3;j++) {
 				if(funcion.equalsIgnoreCase(j+"M")) {
+					dato +="M";
 					switch(j) {
 					case(1):matriz1M[posLetra][posNumero] = 1;
 							imprimirSala(listanumeros, listaLetras, matriz1M);
 							break;
 					case(2):matriz2M[posLetra][posNumero] = 1;
+							tituloMatriz(j,dato);
 							imprimirSala(listanumeros, listaLetras, matriz2M);
 							break;
 					case(3):matriz3M[posLetra][posNumero] = 1;
@@ -261,7 +272,7 @@ public class Taller02021 {
 			}	
 		}
 	}
-
+	
 
 	
 	public static void main(String[] args) throws FileNotFoundException {
@@ -319,6 +330,7 @@ public class Taller02021 {
 			}
 			System.out.println();
 		}*/
+		
 
 		
 		
