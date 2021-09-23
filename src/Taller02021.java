@@ -100,6 +100,44 @@ public class Taller02021 {
 		}
 		return -1;
 	}
+	public static int buscarLetra(String [] lista,int cantidad,String dato) {
+		for(int i=0;i<cantidad;i++) {
+			if(lista[i]== null) {
+				break;
+			}
+			if(lista[i].equalsIgnoreCase("A")) {
+				return i;
+			}
+			if(lista[i].equalsIgnoreCase("B")) {
+				return i;
+			}
+			if(lista[i].equalsIgnoreCase("C")) {
+				return i;
+			}
+			if(lista[i].equalsIgnoreCase("D")) {
+				return i;
+			}
+			if(lista[i].equalsIgnoreCase("E")) {
+				return i;
+			}if(lista[i].equalsIgnoreCase("F")) {
+				return i;
+			}
+			if(lista[i].equalsIgnoreCase("G")) {
+				return i;
+			}
+			if(lista[i].equalsIgnoreCase("H")) {
+				return i;
+			}
+			if(lista[i].equalsIgnoreCase("I")) {
+				return i;
+			}
+			if(lista[i].equalsIgnoreCase("J")) {
+				return i;
+			}
+			
+		}
+		return -1;
+	}
 	
 	/*
 	public static void desplegarMatriz(int [][] matriz) {
@@ -210,14 +248,13 @@ public class Taller02021 {
 	
 	public static void comprarEntrada(int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas ) {
 		String funcion = obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
-
 		System.out.print("Cuantos asientos desea comprar:");
 		int cantAsientos = leer.nextInt();
+		leer.nextLine();
 		for(int i=0;i<cantAsientos;i++) {
 			System.out.println("Asiento "+(i+1)+"\t");
 			System.out.print("Ingrese la letra de la fila que desea comprar:");
 			String letraFila = leer.nextLine();
-			leer.nextLine();
 			int posLetra = buscarEnLista(listaLetras, 10, letraFila);
 			System.out.println(posLetra);
 			System.out.print("Ingrese el numero de la columna que desea comprar: ");
@@ -227,16 +264,28 @@ public class Taller02021 {
 			for(int j=1;j<=3;j++) {
 				if(funcion.equalsIgnoreCase(j+"M")) {
 					switch(j) {
-					case(1):matriz1M[posLetra][posNumero] = 1;break;
-					case(2):matriz2M[posLetra][posNumero] = 1;break;
-					case(3):matriz3M[posLetra][posNumero] = 1;break;
+					case(1):matriz1M[posLetra][posNumero] = 1;
+							imprimirSala(listanumeros, listaLetras, matriz1M);
+							break;
+					case(2):matriz2M[posLetra][posNumero] = 1;
+							imprimirSala(listanumeros, listaLetras, matriz2M);
+							break;
+					case(3):matriz3M[posLetra][posNumero] = 1;
+							imprimirSala(listanumeros, listaLetras, matriz3M);
+							break;
 					default:break;
 					}
 				}else if(funcion.equals(j+"T")) {
 					switch(j) {
-					case(1):matriz1T[posLetra][posNumero] = 1;break;
-					case(2):matriz2T[posLetra][posNumero] = 1;break;
-					case(3):matriz3T[posLetra][posNumero] = 1;break;
+					case(1):matriz1T[posLetra][posNumero] = 1;
+							imprimirSala(listanumeros, listaLetras, matriz1T);
+							break;
+					case(2):matriz2T[posLetra][posNumero] = 1;
+							imprimirSala(listanumeros, listaLetras, matriz2T);
+							break;
+					case(3):matriz3T[posLetra][posNumero] = 1;
+							imprimirSala(listanumeros, listaLetras, matriz3T);
+							break;
 					default:break;
 					}
 				}
@@ -274,8 +323,6 @@ public class Taller02021 {
 		String [] ltipos = new String[200];
 		int [] listaRecaudacionPelicula = new int[200];
 		//
-		int [] lsalas = new int[11];
-		//
 		
 		int [] listanumeros = new int[30];
 		for(int i=0;i<30;i++) {
@@ -310,10 +357,10 @@ public class Taller02021 {
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
-		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
+		horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		
 		//obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M,matriz2M,matriz3M,matriz1T,matriz2T,matriz3T);
-		//comprarEntrada(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas);
+		comprarEntrada(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas);
 	
 		/*for(int i=0;i<7;i++) {
 			for(int j=0;j<3;j++) {
@@ -321,7 +368,6 @@ public class Taller02021 {
 			}
 			System.out.println();
 		}*/
-		//imprimirSala(listanumeros, listaLetras, matriz2M);
 
 		
 		
