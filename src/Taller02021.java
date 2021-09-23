@@ -321,19 +321,46 @@ public class Taller02021 {
 		verificarRut(rut);
 		int posRut = buscarEnLista(lruts, cantClientes, rut);
 		if(posRut == -1) {
-			System.out.print("Rut no registrado, Desea Registrarse? (SI) o (NO)");
-			String resp = leer.nextLine();
-			if(resp.equalsIgnoreCase("SI")) {
-				registrar(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+			if(rut.equals("ADMIN")) {
+				System.out.print("Ingrese su contraseña:");
+				String contraseña = leer.nextLine();
+				if(contraseña.equals("ADMIN")) {
+					menuAdmin();
+				}else {
+					System.out.println("Contraseña erronea.");
+					iniciarSesion(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+				}
+			}else {
+				System.out.print("Rut no registrado, Desea Registrarse? (SI) o (NO)");
+				String resp = leer.nextLine();
+				if(resp.equalsIgnoreCase("SI")) {
+					boolean registrado =registrar(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+					if(registrado) {
+						System.out.println("Usuario registrado con exito");
+					}else {
+						System.out.println("Error al momento de registrar, el usuario ya existe");
+					}
+				}
 			}
 		}else {
 			System.out.print("Ingrese su contraseña porfavor: ");
 			String contraseña = leer.nextLine();
 			if(lcontraseñas[posRut].equals(contraseña)) {
-				//aca deberia ir el menu cliente
+				menuCliente();
+			}else {
+				System.out.print("Error ingresar la contraseña desea intentarlo de nuevo?(SI) o (NO)?: ");
+				String resp = leer.nextLine();
+				if(resp.equalsIgnoreCase("SI")) {
+					iniciarSesion(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+				}
 			}
 		}
 	}
+	private static void menuAdmin() {
+		
+		
+	}
+
 	public static void menuCliente() {
 		System.out.println("Bienvenido al Menu Cliente estas son las opciones disponibles");
     	System.out.println("\tA)Comprar Entrada");
@@ -343,7 +370,7 @@ public class Taller02021 {
     	System.out.print("Seleccione una opción: ");
     	String opcion = leer.nextLine();
     	switch(opcion) {
-    		case("A"):System.out.println("a");break;
+    		case("A"):System.out.println("a");break;//solo para comprobar el print
     		case("B"):System.out.println("b");break;
     		case("C"):System.out.println("c");break;
     		case("D"):System.out.println("d");break;
@@ -400,7 +427,7 @@ public class Taller02021 {
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
-		obtenerCartelera(lpeliculas, matrizMañana, matrizTarde, cantPeliculas);
+		
 		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		
 		//obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M,matriz2M,matriz3M,matriz1T,matriz2T,matriz3T);
