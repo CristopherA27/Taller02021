@@ -87,7 +87,6 @@ public class Taller02021 {
 		}
 		return -1;
 	}
-
 	
 	public static int buscarEnListaNumeros(int []lista,int cantidad,int dato) {
 		for(int i=0;i<cantidad;i++) {
@@ -100,54 +99,6 @@ public class Taller02021 {
 		}
 		return -1;
 	}
-	public static int buscarLetra(String [] lista,int cantidad,String dato) {
-		for(int i=0;i<cantidad;i++) {
-			if(lista[i]== null) {
-				break;
-			}
-			if(lista[i].equalsIgnoreCase("A")) {
-				return i;
-			}
-			if(lista[i].equalsIgnoreCase("B")) {
-				return i;
-			}
-			if(lista[i].equalsIgnoreCase("C")) {
-				return i;
-			}
-			if(lista[i].equalsIgnoreCase("D")) {
-				return i;
-			}
-			if(lista[i].equalsIgnoreCase("E")) {
-				return i;
-			}if(lista[i].equalsIgnoreCase("F")) {
-				return i;
-			}
-			if(lista[i].equalsIgnoreCase("G")) {
-				return i;
-			}
-			if(lista[i].equalsIgnoreCase("H")) {
-				return i;
-			}
-			if(lista[i].equalsIgnoreCase("I")) {
-				return i;
-			}
-			if(lista[i].equalsIgnoreCase("J")) {
-				return i;
-			}
-			
-		}
-		return -1;
-	}
-	
-	/*
-	public static void desplegarMatriz(int [][] matriz) {
-		for(int i=0;i<10;i++) {
-			for(int j=0;j<30;j++) {
-				System.out.print(matriz[i][j]+"|");
-			}
-			System.out.println();
-		}
-	}*/
 	
 	public static String verificarRut(String rutNormal) {
 		String nuevoRut = rutNormal.replace(".","");
