@@ -87,6 +87,19 @@ public class Taller02021 {
 		}
 		return -1;
 	}
+
+	
+	public static int buscarEnListaNumeros(int []lista,int cantidad,int dato) {
+		for(int i=0;i<cantidad;i++) {
+			if(lista[i]==0) {
+				break;
+			}
+			if(lista[i]==dato) {
+				return i;
+			}
+		}
+		return -1;
+	}
 	
 	/*
 	public static void desplegarMatriz(int [][] matriz) {
@@ -105,7 +118,7 @@ public class Taller02021 {
 		return nuevoRut;
 	}
 	//sirve para crear la matriz
-	public static void crearMatrizSala(int [] lista,char [] listaLetras,int [][]matriz) {
+	public static void crearMatrizSala(int [] lista,String [] listaLetras,int [][]matriz) {
 		for(int fila=0;fila<10;fila++) {
 			for(int columna=0;columna<30;columna++) {
 				if(columna<5 && fila<4 ) {
@@ -123,7 +136,8 @@ public class Taller02021 {
 			}
 		}
     }
-	public static void imprimirSala(int [] lista,char [] listaLetras,int [][]matriz) {
+	
+	public static void imprimirSala(int [] lista,String [] listaLetras,int [][]matriz) {
 		for(int k=0;k<30;k++) {
 			lista[k]= k+1;
 			System.out.print("\t"+lista[k]);
@@ -159,7 +173,7 @@ public class Taller02021 {
 		return posPelicula;
 
 	}
-	public static void obtenerSalaDeFuncion(int [] listanumeros,char [] listaLetras,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
+	public static String obtenerSalaDeFuncion(int [] listanumeros,String [] listaLetras,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
 		System.out.print("Seleccione la funcion a la que desea comprar entradas:");
 		String funcion = leer.nextLine();
 		for(int i=1;i<=3;i++) {
@@ -191,17 +205,60 @@ public class Taller02021 {
 				}
 			}
 		}
+		return funcion;
 	}
 	
-	public static void comprarEntrada(int [] listanumeros,char [] listaLetras) {
-		//Se podria obtener la i dela funcion anteior y la T o M para reconocer la matriz donde hara cambios.
-		System.out.println("Cuantos asientos desea comprar:");
+	public static void comprarEntrada(int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas ) {
+		String funcion = obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
+
+		System.out.print("Cuantos asientos desea comprar:");
 		int cantAsientos = leer.nextInt();
 		for(int i=0;i<cantAsientos;i++) {
+			System.out.println("Asiento "+(i+1)+"\t");
 			System.out.print("Ingrese la letra de la fila que desea comprar:");
 			String letraFila = leer.nextLine();
+			leer.nextLine();
+			int posLetra = buscarEnLista(listaLetras, 10, letraFila);
+			System.out.println(posLetra);
 			System.out.print("Ingrese el numero de la columna que desea comprar: ");
 			int numeroColumna = leer.nextInt();
+			int posNumero = buscarEnListaNumeros(listanumeros, 30, numeroColumna);
+			System.out.println(posNumero);
+			for(int j=1;j<=3;j++) {
+				if(funcion.equalsIgnoreCase(j+"M")) {
+					switch(j) {
+					case(1):matriz1M[posLetra][posNumero] = 1;break;
+					case(2):matriz2M[posLetra][posNumero] = 1;break;
+					case(3):matriz3M[posLetra][posNumero] = 1;break;
+					default:break;
+					}
+				}else if(funcion.equals(j+"T")) {
+					switch(j) {
+					case(1):matriz1T[posLetra][posNumero] = 1;break;
+					case(2):matriz2T[posLetra][posNumero] = 1;break;
+					case(3):matriz3T[posLetra][posNumero] = 1;break;
+					default:break;
+					}
+				}
+			}
+			
+		}
+	}
+	public static void rellenarListaLetras(String [] lista) {
+		for(int i=0;i<10;i++) {
+			switch(i+1) {
+			case(1):lista[i]="A";break;
+			case(2):lista[i]="B";break;
+			case(3):lista[i]="C";break;
+			case(4):lista[i]="D";break;
+			case(5):lista[i]="E";break;
+			case(6):lista[i]="F";break;
+			case(7):lista[i]="G";break;
+			case(8):lista[i]="H";break;
+			case(9):lista[i]="I";break;
+			case(10):lista[i]="J";break;
+			default:break;
+			}	
 		}
 	}
 
@@ -219,12 +276,17 @@ public class Taller02021 {
 		//
 		int [] lsalas = new int[11];
 		//
+		
+		int [] listanumeros = new int[30];
+		for(int i=0;i<30;i++) {
+			listanumeros[i] = i+1;
+		}
+		String [] listaLetras = new String[10];
+		rellenarListaLetras(listaLetras);
+		
 		boolean [][] matrizMañana = new boolean[100][3];//[FILAS][COLUMNAS] 100 por que es el contador de peliculas
 		
 		boolean [][] matrizTarde = new boolean[100][3];//[FILAS][COLUMNAS]
-		
-		int [] listanumeros = new int[30];
-		char[] listaLetras = {'A','B','C','D','E','F','G','H','I','J'};
 		
 		int [][] matriz1M =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz1M);
@@ -251,18 +313,17 @@ public class Taller02021 {
 		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		
 		//obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M,matriz2M,matriz3M,matriz1T,matriz2T,matriz3T);
+		//comprarEntrada(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas);
 	
-		//desplegar(lruts, listaPaseMovilidad, cantClientes);COMPROBE EL PARALELISMO DE EL PASE DE MOVILIDAD CON LOS RUTS
-		
 		/*for(int i=0;i<7;i++) {
 			for(int j=0;j<3;j++) {
 				System.out.print(matrizMañana[i][j]+" ");
 			}
 			System.out.println();
 		}*/
-		for(int i=0;i<30;i++) {
-			System.out.println(listanumeros[i]);
-		}
+		//imprimirSala(listanumeros, listaLetras, matriz2M);
+
+		
 		
 
 	}
