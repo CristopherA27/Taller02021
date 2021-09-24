@@ -325,48 +325,51 @@ public class Taller02021 {
 	}
 	
 	public static int iniciarSesion(String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
-		System.out.println("Bienvenido");
-		System.out.print("Ingrese su rut porfavor: ");
-		String rut = leer.nextLine();
-		verificarRut(rut);
-		int posCliente = buscarEnLista(lruts, cantClientes, rut);
-		if(posCliente == -1) {
-			if(rut.equals("ADMIN")) {
-				System.out.print("Ingrese su contraseña:");
-				String contraseña = leer.nextLine();
-				if(contraseña.equals("ADMIN")) {
-					return 1;
-				}else {
-					System.out.println("Contraseña erronea.");
-					iniciarSesion(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
-				}
-			}else {
-				System.out.print("Rut no registrado, Desea Registrarse? (SI) o (NO)");
-				String resp = leer.nextLine();
-				if(resp.equalsIgnoreCase("SI")) {
-					boolean registrado =registrar(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
-					if(registrado) {
-						return 2;
-					}else {
+		while(true) {
+			boolean equivocado = false;
+			System.out.println("Bienvenido");
+			System.out.print("Ingrese su rut porfavor: ");
+			String rut = leer.nextLine();
+			rut = verificarRut(rut);
+			int posCliente = buscarEnLista(lruts, cantClientes, rut);
+			if(posCliente == -1) {
+				if(rut.equals("ADMIN")) {
+					System.out.print("Ingrese su contraseña:");
+					String contraseña = leer.nextLine();
+					if(contraseña.equals("ADMIN")) {
 						return -1;
+					}else {
+						equivocado = true;
+					}
+				}else {
+					System.out.print("Rut no registrado, Desea Registrarse? (SI) o (NO)");
+					String resp = leer.nextLine();
+					if(resp.equalsIgnoreCase("SI")) {
+						boolean registrado =registrar(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+						if(registrado) {
+							return 2;
+						}else {
+							return -2;
+						}
+					}else {
+						System.out.println("---------------------");
 					}
 				}
-			}
-		}else {
-			System.out.print("Ingrese su contraseña porfavor: ");
-			String contraseña = leer.nextLine();
-			if(lcontraseñas[posCliente].equals(contraseña)) {
-				System.out.println("Ingreso exitoso.");
-				return posCliente;
 			}else {
-				System.out.print("Error ingresar la contraseña desea intentarlo de nuevo?(SI) o (NO)?: ");
-				String resp = leer.nextLine();
-				if(resp.equalsIgnoreCase("SI")) {
-					iniciarSesion(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+				System.out.print("Ingrese su contraseña porfavor: ");
+				String contraseña = leer.nextLine();
+				if(lcontraseñas[posCliente].equals(contraseña)) {
+					System.out.println("Ingreso exitoso.");
+					return posCliente;
+				}else {
+					equivocado = true;
 				}
 			}
+			if(equivocado) {
+				System.out.println("Error al ingresar la contraseña.");
+				System.out.println("-------------------");
+			}
 		}
-		return posCliente;
 	}
 	
 	public static void cargarSaldo() {
@@ -380,31 +383,32 @@ public class Taller02021 {
 		
 	}
 
-	public static void menuCliente(int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos
-									,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
-		
-		int posCliente = iniciarSesion(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
-		System.out.println("Bienvenido al Menu Cliente estas son las opciones disponibles");
-    	System.out.println("\tA)Comprar Entrada");
-    	System.out.println("\tB)Informacion Usuario");
-    	System.out.println("\tC)Devolucion Entrada");
-    	System.out.println("\tD)Cartelera");
-    	System.out.print("Seleccione una opción: ");
-    	String opcion = leer.nextLine();
-    	switch(opcion) {
-    		case("A"):
-    			horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
-    			comprarEntrada(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas);
-    			break;//solo para comprobar el print
-    		case("B"):System.out.println("b");break;
-    		case("C"):System.out.println("c");break;
-    		case("D"):System.out.println("d");break;
-    		default:break;
-    		
-    	}
-    	System.out.println("Saliendo del Menu Cliente");
-		
-		
+	public static void menuCliente(int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
+		System.out.println("Bienvenido "+lnombres[posCliente]+" "+lapellidos[posCliente]);
+		while(true) {
+			System.out.println("Bienvenido al Menu Cliente estas son las opciones disponibles");
+	    	System.out.println("\tA)Comprar Entrada");
+	    	System.out.println("\tB)Informacion Usuario");
+	    	System.out.println("\tC)Devolucion Entrada");
+	    	System.out.println("\tD)Cartelera");
+	    	System.out.println("\tE)Cerrar Sesion");
+	    	System.out.print("Seleccione una opción: ");
+	    	String opcion = leer.nextLine();
+	    	switch(opcion) {
+	    		case("A"):
+	    			System.out.println("a");
+	    			break;//solo para comprobar el print
+	    		case("B"):System.out.println("b");break;
+	    		case("C"):System.out.println("c");break;
+	    		case("D"):System.out.println("d");break;
+	    		case("E"):break;
+	    		default:break;
+	    	}
+	    	if(opcion.equalsIgnoreCase("E")) {
+	    		break;
+	    	}
+		}
+		System.out.println("\tSALIENDO DEL MENU CLIENTE");
 	}
 
 	
@@ -457,19 +461,25 @@ public class Taller02021 {
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
 		//obtenerCartelera(lpeliculas, matrizMañana, matrizTarde, cantPeliculas);
 		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
-		menuCliente(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde, lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
-		//obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M,matriz2M,matriz3M,matriz1T,matriz2T,matriz3T);
-		//comprarEntrada(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas);
-	
-		/*for(int i=0;i<7;i++) {
-			for(int j=0;j<3;j++) {
-				System.out.print(matrizMañana[i][j]+" ");
+		while(true) {
+			int posPersona = iniciarSesion(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+			switch(posPersona) {
+			case(-1):
+				menuAdmin();
+				break;
+			case(2):
+				System.out.println("Usuario registrado con exito");
+				break;
+			case(-2):
+				System.out.println("El usuario no puede registrarse por que no hay espacio suficiente");
+				break;
+			default:
+				menuCliente(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, lpeliculas, ltipos, cantPeliculas, cantClientes, matrizMañana, matrizTarde, lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+				break;
 			}
-			System.out.println();
-		}*/
-		
-
-		
+			System.out.println("Desea cerrar el sistema? (SI) o (NO)");
+			String resp = leer.nextLine();
+		}
 		
 
 	}
