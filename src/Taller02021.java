@@ -220,12 +220,10 @@ public class Taller02021 {
 		System.out.println("Los asientos que tienen un 5 no estan habilitados");
 		System.out.println("Los asientos que contengan un 0 son los asientos que puede comprar!");
 		System.out.println();
+		avanzar(0);
 	}
 
 	public static void comprarEntrada(int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas ) {
-		String [] lhorarios = new String[200];
-		int [] lsalas = new int[200];
-		int [] listaCantEntradas = new int[200];
 		String funcion = obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 		System.out.print("Cuantos asientos desea comprar:");
 		int cantAsientos = leer.nextInt();
@@ -404,7 +402,8 @@ public class Taller02021 {
 	    	String opcion = leer.nextLine();
 	    	switch(opcion) {
 	    		case("A"):
-	    			System.out.println("a");
+	    			horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
+	    			comprarEntrada(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas);
 	    			break;//solo para comprobar el print
 	    		case("B"):System.out.println("b");break;
 	    		case("C"):System.out.println("c");break;
@@ -464,6 +463,7 @@ public class Taller02021 {
 		int [][] matriz3T =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz3T);
 		//
+		
 		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
