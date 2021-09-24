@@ -41,6 +41,14 @@ public class Taller02021 {
 		s.close();		
 	}
 	
+	public static void avanzar(int num) {
+		if(num == 1) {
+			System.out.println("\tPrecione Enter para continuar");
+			leer.nextLine();
+		}
+		System.out.println("-------------------------------------------");
+	}
+	
 	public static int leerPeliculas(String [] lpeliculas,String [] ltipos,int [] listaRecaudacionPelicula,boolean [][] matrizMañana,boolean [][] matrizTarde) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("peliculas.txt"));
 		int cont = 0;
@@ -330,7 +338,7 @@ public class Taller02021 {
 			System.out.println("Bienvenido");
 			System.out.print("Ingrese su rut porfavor: ");
 			String rut = leer.nextLine();
-			rut = verificarRut(rut);
+			verificarRut(rut);
 			int posCliente = buscarEnLista(lruts, cantClientes, rut);
 			if(posCliente == -1) {
 				if(rut.equals("ADMIN")) {
@@ -413,6 +421,7 @@ public class Taller02021 {
 
 	
 	public static void main(String[] args) throws FileNotFoundException {
+		int cantListas = 200;
 		String [] lnombres = new String[200];
 		String [] lapellidos  = new String[200];
 		String [] lruts = new String[200];
@@ -459,12 +468,11 @@ public class Taller02021 {
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
-		//obtenerCartelera(lpeliculas, matrizMañana, matrizTarde, cantPeliculas);
-		//horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		while(true) {
 			int posPersona = iniciarSesion(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
 			switch(posPersona) {
 			case(-1):
+				avanzar(0);
 				menuAdmin();
 				break;
 			case(2):
@@ -474,13 +482,21 @@ public class Taller02021 {
 				System.out.println("El usuario no puede registrarse por que no hay espacio suficiente");
 				break;
 			default:
-				menuCliente(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, lpeliculas, ltipos, cantPeliculas, cantClientes, matrizMañana, matrizTarde, lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+				avanzar(0);
+				menuCliente(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, lpeliculas, ltipos, cantPeliculas, posPersona, matrizMañana, matrizTarde, lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
 				break;
 			}
 			System.out.println("Desea cerrar el sistema? (SI) o (NO)");
 			String resp = leer.nextLine();
+			while(!resp.equalsIgnoreCase("SI")&& !resp.equalsIgnoreCase("NO")) {
+				System.out.println("Desea cerrar el sistema? (SI) o (NO)");
+				resp = leer.nextLine();
+			}
+			if(resp.equalsIgnoreCase("SI")) {
+				break;
+			}
 		}
-		
+		System.out.println("DATOS SOBREESCRITOS");
 
 	}
 	public static Scanner leer = new Scanner(System.in);
