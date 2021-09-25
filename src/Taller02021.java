@@ -209,7 +209,6 @@ public class Taller02021 {
 					imprimirSala(listanumeros, listaLetras, matriz3M);
 					lhorarios[cont]= dato;
 					lsalas[cont] = i;
-
 					break;
 				default:break;
 				}
@@ -286,6 +285,7 @@ public class Taller02021 {
 
 	public static void obtener(String [] lruts,String [] lnombres,String [] lapellidos,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos) {
 		int cantColumnas = listaCantEntradas[posCliente];
+		
 		for(int k=0;k<lruts.length;k++) {
 			if(lruts[posCliente].equals(rutsClientes[k])) {
 				System.out.println(lnombres[posCliente]+" "+lapellidos[posCliente]+" "+rutsClientes[posCliente]+" "+listaPeliculas[posCliente]+" "+lhorarios[posCliente]+" "+lsalas[posCliente]+" "+listaCantEntradas[posCliente]);
@@ -300,6 +300,8 @@ public class Taller02021 {
 
 	public static void comprarEntrada(String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas ) {
 		int cont= 0;
+		
+		//agregar un while o algo para que el cont no se buguee
 		String funcion = obtenerSalaDeFuncion(lhorarios, lsalas, listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 		System.out.print("Cuantos asientos desea comprar:");
 		int cantAsientos = leer.nextInt();
