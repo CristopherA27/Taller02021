@@ -108,6 +108,12 @@ public class Taller02021 {
 		return -1;
 	}
 	
+	public static void ingresarEnMatriz(String [][]matriz,int fila,int columna) {
+		for(int i=0;i<200;i++) {
+			
+		}
+	}
+	
 	public static String verificarRut(String rutNormal) {
 		String nuevoRut = rutNormal.replace(".","");
 		nuevoRut = nuevoRut.replace("-","");
@@ -152,9 +158,11 @@ public class Taller02021 {
 	}
 	
 	//Esta Lista
-	public static int horariosDisponiblesPelicula(String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
+	public static int horariosDisponiblesPelicula(String [] listaPeliculas,String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
+		int cont = 0;
 		System.out.print("Ingrese el nombre de la pelicula para ver sus horarios: ");
 		String pelicula = leer.nextLine();
+		listaPeliculas[cont]=pelicula;
 		int posPelicula = buscarEnLista(lpeliculas, cantPeliculas, pelicula);
 		if(posPelicula == -1) {
 			System.out.println("La pelicula ingresada no existe");
@@ -169,10 +177,13 @@ public class Taller02021 {
 				}
 			}
 		}
+		cont++;
 		return posPelicula;
 
 	}
-	public static String obtenerSalaDeFuncion(int [] listanumeros,String [] listaLetras,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
+
+	public static String obtenerSalaDeFuncion(String [] lhorarios,int [] lsalas,int [] listanumeros,String [] listaLetras,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
+		int cont = 0;
 		System.out.print("Seleccione la funcion a la que desea comprar entradas:");
 		String funcion = leer.nextLine();
 		String dato = "";
@@ -182,13 +193,24 @@ public class Taller02021 {
 				switch(i) {
 				case(1):
 					tituloMatriz(i,dato);
-					imprimirSala(listanumeros, listaLetras, matriz1M);break;
+					imprimirSala(listanumeros, listaLetras, matriz1M);
+					lhorarios[cont]= dato;
+					lsalas[cont] = i;
+					break;
 				case(2):
 					tituloMatriz(i,dato);
-					imprimirSala(listanumeros, listaLetras, matriz2M);break;
+					imprimirSala(listanumeros, listaLetras, matriz2M);
+					lhorarios[cont]= dato;
+					lsalas[cont] = i;
+
+					break;
 				case(3):
 					tituloMatriz(i,dato);
-					imprimirSala(listanumeros, listaLetras, matriz3M);break;
+					imprimirSala(listanumeros, listaLetras, matriz3M);
+					lhorarios[cont]= dato;
+					lsalas[cont] = i;
+
+					break;
 				default:break;
 				}
 			}else if(funcion.equalsIgnoreCase(i+"T")) {
@@ -196,19 +218,37 @@ public class Taller02021 {
 				switch(i) {
 				case(1):
 					tituloMatriz(i,dato);
-					imprimirSala(listanumeros, listaLetras, matriz1T);break;
+					imprimirSala(listanumeros, listaLetras, matriz1T);
+					lhorarios[cont]= dato;
+					lsalas[cont] = i;
+					break;
 				case(2):
 					tituloMatriz(i,dato);
-					imprimirSala(listanumeros, listaLetras, matriz2T);break;
+					imprimirSala(listanumeros, listaLetras, matriz2T);
+					lhorarios[cont]= dato;
+					lsalas[cont] = i;
+					break;
 				case(3):
 					tituloMatriz(i,dato);
-					imprimirSala(listanumeros, listaLetras, matriz3T);break;
+					imprimirSala(listanumeros, listaLetras, matriz3T);
+					lhorarios[cont]= dato;
+					lsalas[cont] = i;
+					break;
 				default:break;
 				}
 			}
 		}
+		cont ++;
 		return funcion;
 	}
+	/*	String [] rutsClientes = new String [200];
+		String [] listaPeliculas = new String [200];
+		String [] lhorarios = new String[200];
+		int [] lsalas = new int[200];
+		int [] listaCantEntradas = new int[200];*/
+	
+	
+	
 	
 	public static void tituloMatriz(int i,String dato) {
 		System.out.println("\t-------------------------------------------------------SALA "+i+dato+"-------------------------------------------------\t|");
@@ -222,11 +262,48 @@ public class Taller02021 {
 		System.out.println();
 		avanzar(0);
 	}
+	public static void ingresarLista(int cantidad,String [] lista,String dato ) {
+		for(int i=0;i<cantidad;i++) {
+			if(lista[i].equals(null)) {
+				lista[i] = dato;
+			}
+			if(i==cantidad) {
+				System.out.println("No hay mas espacio para guardar el dato");
+			}
+		}
+	}
+	
+	public static void ingresarListaSalas(int cantidad,int [] lista,int dato ) {
+		for(int i=0;i<cantidad;i++) {
+			if(lista[i]==0) {
+				lista[i] = dato;
+			}
+			if(i==cantidad) {
+				System.out.println("No hay mas espacio para guardar el dato");
+			}
+		}
+	}
 
-	public static void comprarEntrada(int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas ) {
-		String funcion = obtenerSalaDeFuncion(listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
+	public static void obtener(String [] lruts,String [] lnombres,String [] lapellidos,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos) {
+		int cantColumnas = listaCantEntradas[posCliente];
+		for(int k=0;k<lruts.length;k++) {
+			if(lruts[posCliente].equals(rutsClientes[k])) {
+				System.out.println(lnombres[posCliente]+" "+lapellidos[posCliente]+" "+rutsClientes[posCliente]+" "+listaPeliculas[posCliente]+" "+lhorarios[posCliente]+" "+lsalas[posCliente]+" "+listaCantEntradas[posCliente]);
+			}
+		}
+		for(int i=0;i<cantColumnas;i++) {
+			System.out.println(matrizAsientos[posCliente][i]);
+		}
+		
+	}
+	
+
+	public static void comprarEntrada(String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas ) {
+		int cont= 0;
+		String funcion = obtenerSalaDeFuncion(lhorarios, lsalas, listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 		System.out.print("Cuantos asientos desea comprar:");
 		int cantAsientos = leer.nextInt();
+		listaCantEntradas[cont] = cantAsientos;
 		leer.nextLine();
 		for(int i=0;i<cantAsientos;i++) {
 			System.out.println("Asiento "+(i+1)+"\t");
@@ -238,6 +315,7 @@ public class Taller02021 {
 			leer.nextLine();
 			int posNumero = buscarEnListaNumeros(listanumeros, 30, numeroColumna);
 			String dato  = "";
+			matrizAsientos[cont][i]=letraFila+""+numeroColumna;
 			for(int j=1;j<=3;j++) {
 				if(funcion.equalsIgnoreCase(j+"M")) {
 					dato +="M";
@@ -270,6 +348,7 @@ public class Taller02021 {
 				}
 			}
 		}
+		cont++;
 	}
 	public static void rellenarListaLetras(String [] lista) {
 		for(int i=0;i<10;i++) {
@@ -330,7 +409,8 @@ public class Taller02021 {
 		return false;
 	}
 	
-	public static int iniciarSesion(String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
+	public static int iniciarSesion(String [] rutsClientes,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
+		int cont = 0;
 		while(true) {
 			boolean equivocado = false;
 			System.out.println("Bienvenido");
@@ -362,6 +442,7 @@ public class Taller02021 {
 					}
 				}
 			}else {
+				rutsClientes[cont]= rut;
 				System.out.print("Ingrese su contraseña porfavor: ");
 				String contraseña = leer.nextLine();
 				if(lcontraseñas[posCliente].equals(contraseña)) {
@@ -375,6 +456,7 @@ public class Taller02021 {
 				System.out.println("Error al ingresar la contraseña.");
 				System.out.println("-------------------");
 			}
+			cont++;
 		}
 	}
 	
@@ -382,14 +464,13 @@ public class Taller02021 {
 		
 	}
 	
-	
-	
+
 	public static void menuAdmin() {
 		
 		
 	}
 
-	public static void menuCliente(int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
+	public static void menuCliente(String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
 		System.out.println("Bienvenido "+lnombres[posCliente]+" "+lapellidos[posCliente]);
 		while(true) {
 			System.out.println("Bienvenido al Menu Cliente estas son las opciones disponibles");
@@ -402,10 +483,11 @@ public class Taller02021 {
 	    	String opcion = leer.nextLine();
 	    	switch(opcion) {
 	    		case("A"):
-	    			horariosDisponiblesPelicula(lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
-	    			comprarEntrada(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas);
-	    			break;//solo para comprobar el print
-	    		case("B"):System.out.println("b");break;
+	    			horariosDisponiblesPelicula(listaPeliculas, lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
+	    			comprarEntrada(matrizAsientos, listaCantEntradas, lhorarios, lsalas, posCliente, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas);
+	  
+	    			break;
+	    		case("B"):obtener(lruts,lnombres, lapellidos, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos);break;
 	    		case("C"):System.out.println("c");break;
 	    		case("D"):System.out.println("d");break;
 	    		case("E"):break;
@@ -414,6 +496,7 @@ public class Taller02021 {
 	    	if(opcion.equalsIgnoreCase("E")) {
 	    		break;
 	    	}
+	    	
 		}
 		System.out.println("\tSALIENDO DEL MENU CLIENTE");
 	}
@@ -430,9 +513,16 @@ public class Taller02021 {
 		String [] ltipos = new String[200];
 		int [] listaRecaudacionPelicula = new int[200];
 		//
+		String [] rutsClientes = new String [200];
+		String [] listaPeliculas = new String [200];
 		String [] lhorarios = new String[200];
 		int [] lsalas = new int[200];
 		int [] listaCantEntradas = new int[200];
+		
+		int estreno= 5500;
+		int liberada = 4000;
+		double descuento = 0.15;
+		
 		
 		int [] listanumeros = new int[30];
 		for(int i=0;i<30;i++) {
@@ -463,13 +553,14 @@ public class Taller02021 {
 		int [][] matriz3T =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz3T);
 		//
+		String [][] matrizAsientos = new String[200][10];
 		
 		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		String [] listaPaseMovilidad = new String[cantClientes];
 		leerStatus(lruts, listaPaseMovilidad, cantClientes);
 		int cantPeliculas = leerPeliculas(lpeliculas, ltipos, listaRecaudacionPelicula, matrizMañana, matrizTarde);
 		while(true) {
-			int posPersona = iniciarSesion(lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+			int posPersona = iniciarSesion(rutsClientes,lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
 			switch(posPersona) {
 			case(-1):
 				avanzar(0);
@@ -483,7 +574,7 @@ public class Taller02021 {
 				break;
 			default:
 				avanzar(0);
-				menuCliente(matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, lpeliculas, ltipos, cantPeliculas, posPersona, matrizMañana, matrizTarde, lnombres, lapellidos, lruts, lcontraseñas, lsaldos, cantClientes);
+				menuCliente(rutsClientes,listaPeliculas,lhorarios,lsalas,listaCantEntradas,matrizAsientos,matriz1M,matriz2M,matriz3M,matriz1T, matriz2T, matriz3T,listanumeros,listaLetras,lpeliculas,ltipos,cantPeliculas,posPersona,matrizMañana,matrizTarde,lnombres,lapellidos,lruts,lcontraseñas,lsaldos,cantClientes);
 				break;
 			}
 			System.out.println("Desea cerrar el sistema? (SI) o (NO)");
