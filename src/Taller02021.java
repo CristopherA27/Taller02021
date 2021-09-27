@@ -157,7 +157,6 @@ public class Taller02021 {
 		int cont = 0;
 		System.out.print("Ingrese el nombre de la pelicula para ver sus horarios: ");
 		String pelicula = leer.nextLine();
-		listaPeliculas[cont]=pelicula;
 		int posPelicula = buscarEnLista(lpeliculas, cantPeliculas, pelicula);
 		if(posPelicula == -1) {
 			System.out.println("La pelicula ingresada no existe");
@@ -171,8 +170,9 @@ public class Taller02021 {
 					System.out.print(j+1+"T"+"\n");
 				}
 			}
+			listaPeliculas[cont]=pelicula;
+			cont++;
 		}
-		cont++;
 		return posPelicula;
 
 	}
