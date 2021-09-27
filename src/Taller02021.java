@@ -108,11 +108,6 @@ public class Taller02021 {
 		return -1;
 	}
 	
-	public static void ingresarEnMatriz(String [][]matriz,int fila,int columna) {
-		for(int i=0;i<200;i++) {
-			
-		}
-	}
 	
 	public static String verificarRut(String rutNormal) {
 		String nuevoRut = rutNormal.replace(".","");
@@ -590,6 +585,10 @@ public class Taller02021 {
 			}
 		}
 		System.out.println("DATOS SOBREESCRITOS");
+		
+		for(int i=0;i<3;i++) {
+			System.out.println(listaPeliculas[i]);
+		}
 
 	}
 	public static Scanner leer = new Scanner(System.in);
