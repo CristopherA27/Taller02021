@@ -285,11 +285,12 @@ public class Taller02021 {
 
 	public static void infoUsuario(String [] lruts,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
 		int columnas = listaCantEntradas[posCliente];
-		for(int i=0;i<lruts.length;i++) {
-			if(rut.equals(rutsClientes[i])) {
-				System.out.print(rutsClientes[posCliente]+" "+lnombres[posCliente]+" "+lapellidos[posCliente]+" "+lsaldos[posCliente]+" "+listaPeliculas[posCliente]+" "+listaCantEntradas[posCliente]);
+		int pos = buscarEnLista(rutsClientes, 10, rut);
+		for(int i=0;i<rutsClientes.length;i++) {
+			if(rutsClientes[i].equals(rut)) {
+				System.out.print(rutsClientes[i]+" "+lnombres[posCliente]+" "+lapellidos[posCliente]+" "+lsaldos[posCliente]+" "+listaPeliculas[i]+" "+listaCantEntradas[i]);
 				for(int j=0;j<columnas;j++) {
-					System.out.print(matrizAsientos[posCliente][j]+" ");
+					System.out.print(matrizAsientos[i][j]+" ");
 				}
 			}
 		}
@@ -531,8 +532,6 @@ public class Taller02021 {
 		
 	}
 	
-	public static int contPersona = 0;
-	
 	public static void menuCliente(String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
 		int cont = 0;
 		System.out.println("Bienvenido "+lnombres[posCliente]+" "+lapellidos[posCliente]);
@@ -552,6 +551,9 @@ public class Taller02021 {
 	    			comprarEntrada(matrizAsientos, listaCantEntradas, lhorarios, lsalas, posCliente, lsaldos, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas, listaPeliculas, lpeliculas, ltipos, matrizTarde, matrizTarde);
 	    			break;
 	    		case("B")://infoUsuario(lruts,lnombres, lapellidos, rut, posCliente,rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos,lsaldos);
+	    			for(int i=0;i<2;i++) {
+	    				System.out.println(rutsClientes[i]+" "+listaPeliculas[i]+" "+lhorarios[i]+" "+lsalas[i]);
+	    			}
 	    			break;
 	    		case("C"):System.out.println("c");
 	    				
@@ -665,6 +667,8 @@ public class Taller02021 {
 		}
 
 	}
+	
 	public static Scanner leer = new Scanner(System.in);
+	public static int contPersona = 0;
 
 }
