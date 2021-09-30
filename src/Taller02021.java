@@ -555,7 +555,7 @@ public class Taller02021 {
 	    				System.out.println(rutsClientes[i]+" "+listaPeliculas[i]+" "+lhorarios[i]+" "+lsalas[i]);
 	    			}
 	    			break;
-	    		case("C"):System.out.println("c");
+	    		case("C"):System.out.println("ccccccc");
 	    				
 	    				break;
 	    		case("D"):System.out.println("d");
