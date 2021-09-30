@@ -283,32 +283,23 @@ public class Taller02021 {
 		}
 	}
 
-	public static void infoUsuario(String [] lruts,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
-		int columnas = listaCantEntradas[posCliente];
+	public static void infoUsuario(int cantClientes,String [] lruts,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
+		//int columnas = listaCantEntradas[posCliente];
 		int pos = buscarEnLista(rutsClientes, 10, rut);
-		for(int i=0;i<rutsClientes.length;i++) {
-			if(rutsClientes[i].equals(rut)) {
-				System.out.print(rutsClientes[i]+" "+lnombres[posCliente]+" "+lapellidos[posCliente]+" "+lsaldos[posCliente]+" "+listaPeliculas[i]+" "+listaCantEntradas[i]);
+	
+		for(int i=0;i<cantClientes;i++) {
+			if(rut.equals(rutsClientes[i])) {
+				System.out.print(rutsClientes[i]+" "+lnombres[posCliente]+" "+lapellidos[posCliente]+" Saldo restante: "+lsaldos[posCliente]+" PELICULA: "+listaPeliculas[i]+" N°SALA: "+lsalas[i]+" HORARIO: "+lhorarios[i]+" Cantidad Entradas: "+listaCantEntradas[i]+" ->");
+				int columnas = listaCantEntradas[i];
 				for(int j=0;j<columnas;j++) {
 					System.out.print(matrizAsientos[i][j]+" ");
 				}
+				System.out.println();
+			}else {
+				break;
 			}
 		}
-		
-		
-		
-		/*
-		for(int k=0;k<lruts.length;k++) { 
-			if(rut.equals(rutsClientes[k])) {
-				System.out.print(lnombres[posCliente]+" "+lapellidos[posCliente]+" "+rut+" "+listaPeliculas[posCliente]+" HORARIO "+lhorarios[posCliente]+" SALA "+lsalas[posCliente]+" CON "+listaCantEntradas[posCliente]+" ENTRADAS: ");
-				for(int i=0;i<cantColumnas;i++) {
-					System.out.print(matrizAsientos[posCliente][i]+" ");
-				}
-			}
-		}*/
 		System.out.println();
-
-		
 	}
 	
 
@@ -536,7 +527,6 @@ public class Taller02021 {
 		int cont = 0;
 		System.out.println("Bienvenido "+lnombres[posCliente]+" "+lapellidos[posCliente]);
 		String rut = lruts[posCliente];
-		rutsClientes[contPersona] = rut;
 		while(true) {
 			System.out.println("Bienvenido al Menu Cliente estas son las opciones disponibles");
 	    	System.out.println("\tA)Comprar Entrada");
@@ -548,12 +538,10 @@ public class Taller02021 {
 	    	String opcion = leer.nextLine();
 	    	switch(opcion) {
 	    		case("A"):
+	    			rutsClientes[contPersona] = rut;
 	    			comprarEntrada(matrizAsientos, listaCantEntradas, lhorarios, lsalas, posCliente, lsaldos, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas, listaPeliculas, lpeliculas, ltipos, matrizTarde, matrizTarde);
 	    			break;
-	    		case("B")://infoUsuario(lruts,lnombres, lapellidos, rut, posCliente,rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos,lsaldos);
-	    			for(int i=0;i<2;i++) {
-	    				System.out.println(rutsClientes[i]+" "+listaPeliculas[i]+" "+lhorarios[i]+" "+lsalas[i]);
-	    			}
+	    		case("B"):infoUsuario(cantClientes,lruts,lnombres, lapellidos, rut, posCliente,rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos,lsaldos);
 	    			break;
 	    		case("C"):System.out.println("ccccccc");
 	    				
