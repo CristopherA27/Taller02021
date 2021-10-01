@@ -462,17 +462,13 @@ public class Taller02021 {
 	 *@param matrizTarde
 	 */
 	
-	public static void comprarEntrada( int [] contRecaudacionMañana ,int [] contRecaudacionTarde ,String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int [] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas,String [] listaPeliculas,String [] lpeliculas,String [] ltipos,boolean [][] matrizMañana,boolean [][] matrizTarde) {
+	public static void comprarEntrada(String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int [] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas,String [] listaPeliculas,String [] lpeliculas,String [] ltipos,boolean [][] matrizMañana,boolean [][] matrizTarde) {
 		int posPelicula = horariosDisponiblesPelicula(listaPeliculas, lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		String funcion = obtenerSalaDeFuncion(lhorarios, lsalas, listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 		System.out.print("Cuantos asientos desea comprar:");
 		int cantAsientos = leer.nextInt();
 		listaCantEntradas[contPersona] = cantAsientos;
 		leer.nextLine();
-		
-	
-	
-		
 		for(int i=0;i<cantAsientos;i++) {
 			System.out.println("Asiento "+(i+1)+"\t");
 			System.out.print("Ingrese la letra de la fila que desea comprar:");
@@ -486,14 +482,6 @@ public class Taller02021 {
 			matrizAsientos[contPersona][i]=letraFila+""+numeroColumna;
 			for(int j=1;j<=3;j++) {
 				if(funcion.equalsIgnoreCase(j+"M")) {
-					
-					if(ltipos[posPelicula]=="estreno") {
-						contRecaudacionMañana[0] += (5500*cantAsientos); 
-					
-					}
-					if(ltipos[posPelicula]=="liberada") {
-						contRecaudacionMañana[0] += (4000*cantAsientos);
-							
 					dato +="M";
 					switch(j) {
 					case(1):matriz1M[posLetra][posNumero] = 1;
@@ -509,14 +497,6 @@ public class Taller02021 {
 					default:break;
 					}
 				}else if(funcion.equals(j+"T")) {
-					
-					if(ltipos[posPelicula]=="estreno") {
-						contRecaudacionTarde[0] += (5500*cantAsientos)
-					
-					}
-					if(ltipos[posPelicula]=="liberada") {
-						contRecaudacionTarde[0] += (4000*cantAsientos)
-					
 					switch(j) {
 					case(1):matriz1T[posLetra][posNumero] = 1;
 							imprimirSala(listanumeros, listaLetras, matriz1T);
@@ -593,7 +573,7 @@ public class Taller02021 {
 	 *@param lsaldos
 	 */
 	
-	public static void devolucionEntrada(int [] contRecaudacionMañana ,int [] contRecaudacionTarde , int [] listanumeros,String [] listaLetras,int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos, String [] ltipos) {
+	public static void devolucionEntrada(int [] listanumeros,String [] listaLetras,int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
 		System.out.println("Las entradas que usted tiene son: ");
 		infoUsuario(cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
 		System.out.print("Ingrese el nombre de la pelicula a la cual desea devolver las entradas:");
@@ -622,15 +602,6 @@ public class Taller02021 {
 					for(int j=1;j<=3;j++) {
 						if(funcion.equalsIgnoreCase(j+"M")) {
 							dato +="M";
-							
-							if(ltipos[posPelicula]=="estreno") {
-								contRecaudacionMañana[0] -= (5500*0.8);
-							}
-							if(ltipos[posPelicula]=="liberada") {
-								contRecaudacionMañana[0] -= (4000*0.8);
-							}
-							
-							
 							switch(j) {
 							case(1):matriz1M[posLetra][posNumero] = 1;
 									imprimirSala(listanumeros, listaLetras, matriz1M);
@@ -645,13 +616,6 @@ public class Taller02021 {
 							default:break;
 							}
 						}else if(funcion.equals(j+"T")) {
-							
-							if(ltipos[posPelicula]=="estreno") {
-								contRecaudacionTarde[0] -= (5500*0.8)
-							}
-							if(ltipos[posPelicula]=="liberada") {
-								contRecaudacionTarde[0] -= (4000*0.8)
-							}
 							switch(j) {
 							case(1):matriz1T[posLetra][posNumero] = 1;
 									imprimirSala(listanumeros, listaLetras, matriz1T);
@@ -984,9 +948,6 @@ public class Taller02021 {
 		String [] lhorarios = new String[200];
 		int [] lsalas = new int[200];
 		int [] listaCantEntradas = new int[200];
-		
-		int [] contRecaudacionMañana = new int[1];
-		int [] contRecaudacionTarde = new int[1];
 		
 		int estreno= 5500;
 		int liberada = 4000;
