@@ -384,7 +384,7 @@ public class Taller02021 {
 				System.out.println("Su saldo es insuficiente.....Desea recargar saldo? (SI) o (NO)");
 				String resp = leer.nextLine();
 				if(resp.equalsIgnoreCase("SI")) {
-					cargarSaldo();
+					cargarSaldo(cantAsientos, total, lsaldos);
 					lsaldos[posPersona] = lsaldos[posPersona] - total;
 				}else {
 					System.out.println("No puedo comprar las entradas con el saldo actual");
@@ -400,7 +400,7 @@ public class Taller02021 {
 				System.out.println("Su saldo es insuficiente.....Desea recargar saldo? (SI) o (NO)");
 				String resp = leer.nextLine();
 				if(resp.equalsIgnoreCase("SI")) {
-					cargarSaldo();
+					cargarSaldo(cantAsientos, total, lsaldos);
 					lsaldos[posPersona] = lsaldos[posPersona] - total;
 				}else {
 					System.out.println("No puedo comprar las entradas con el saldo actual");
@@ -545,7 +545,6 @@ public class Taller02021 {
 				}
 			}
 		}
-		System.out.println(contRecaudacionMañana[0]);
 	}
 	
 	/**
@@ -672,19 +671,43 @@ public class Taller02021 {
 			cont++;
 		}
 	}
-	
-	public static void cargarSaldo() {
-		
-	}
-	
+	 
 
-	public static void menuAdmin() {
-		
+	public static void menuAdmin(int cantidadListaDeAsientos,String [] lnombres,String [] lapellidos,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos,int[] contRecaudacionMañana ,int[] contRecaudacionTarde) {
+		while(true) {
+			System.out.println("Bienvenido al Menu ADMIN estas son las opciones disponibles");
+	    	System.out.println("\tA)Taquilla");
+	    	System.out.println("\tB)Info Cliente");
+	    	System.out.println("\tC)Cerrar Sesion");
+	    	System.out.println("Seleccione una opcion: ");
+	    	String opcion = leer.nextLine();
+	    	switch(opcion) {
+	    	case("A"):
+	    		//monto por pelicula prueeba con 1 nomas
+	    		System.out.println("A lo largo del día se recaudo: "+(contRecaudacionMañana[0]+contRecaudacionTarde[0]));
+	    		System.out.println("El monto recaudado en la mañana fue: "+contRecaudacionMañana[0]);
+	    		System.out.println("El monto recaudado en la tarde fue: "+contRecaudacionTarde[0]);
+	    		break;
+	    	case("B"):
+	    		System.out.println("Ingresel rut de la persona que desea obtener su informacion:");
+	    		String rut = leer.nextLine();
+	    		infoUsuario(cantidadListaDeAsientos, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
+	    		break;
+	    	case("C"):
+	    		break;
+	    	case("D"):
+	    		break;
+	    	default: System.out.println("ELIJA A , B , C porfavor, Si desea salir ingrese D");break;
+	    	}
+	    	if(opcion.equalsIgnoreCase("D")) {
+	    		break;
+	    	}
+		}
+		System.out.println("Saliendo del Menu ADMIN");
 		
 	}
 	
 	public static void menuCliente(int cantColumnasAsientos,int[] contRecaudacionMañana ,int[] contRecaudacionTarde,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
-		int cont = 0;
 		System.out.println("Bienvenido "+lnombres[posCliente]+" "+lapellidos[posCliente]);
 		String rut = lruts[posCliente];
 		while(true) {
@@ -706,11 +729,9 @@ public class Taller02021 {
 	    		case("C"):
 	    			devolucionEntrada(lpeliculas,cantPeliculas,cantColumnasAsientos,contRecaudacionMañana,contRecaudacionTarde,listaLetras, listanumeros, ltipos, cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T);
 	    				break;
-	    		case("D"):System.out.println("d");
-	    				
+	    		case("D"):obtenerCartelera(lpeliculas, matrizMañana, matrizTarde, cantPeliculas);
 	    				break;
 	    		case("E"):
-	    
 	    			break;
 	    		default:System.out.println("Elija A ,B ,C , D o E porfavor ");break;
 	    	}
@@ -792,7 +813,7 @@ public class Taller02021 {
 			switch(posPersona) {
 			case(-1):
 				avanzar(0);
-				menuAdmin();
+				menuAdmin(cantidadListaDeAsientos, lnombres, lapellidos, posPersona, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, contRecaudacionMañana, contRecaudacionTarde);
 				break;
 			case(2):
 				System.out.println("Usuario registrado con exito");
@@ -816,10 +837,6 @@ public class Taller02021 {
 			}
 		}
 		System.out.println("DATOS SOBREESCRITOS");
-		
-		for(int i=0;i<3;i++) {
-			System.out.println(listaPeliculas[i]);
-		}
 
 	}
 	
