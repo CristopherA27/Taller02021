@@ -284,8 +284,8 @@ public class Taller02021 {
 	}
 
 
-	public static void infoUsuario(int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
-		for(int i=0;i<cantClientes;i++) {
+	public static void infoUsuario(int cantidadListaDeAsientos,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
+		for(int i=0;i<cantidadListaDeAsientos;i++) {
 			if(rut.equals(rutsClientes[i])) {
 				System.out.print(rutsClientes[i]+" "+lnombres[posCliente]+" "+lapellidos[posCliente]+" Saldo restante: "+lsaldos[posCliente]+" PELICULA: "+listaPeliculas[i]+" N°SALA: "+lsalas[i]+" HORARIO: "+lhorarios[i]+" Cantidad Entradas: "+listaCantEntradas[i]+" ->");
 				int columnas = listaCantEntradas[i];
@@ -323,7 +323,7 @@ public class Taller02021 {
 	 *@param matrizTarde
 	 */
 	
-	public static void comprarEntrada( Double[] contRecaudacionMañana ,Double[] contRecaudacionTarde ,String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int [] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas,String [] listaPeliculas,String [] lpeliculas,String [] ltipos,boolean [][] matrizMañana,boolean [][] matrizTarde) {
+	public static void comprarEntrada( int[] contRecaudacionMañana ,int[] contRecaudacionTarde ,String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int [] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas,String [] listaPeliculas,String [] lpeliculas,String [] ltipos,boolean [][] matrizMañana,boolean [][] matrizTarde) {
 		int posPelicula = horariosDisponiblesPelicula(listaPeliculas, lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		String funcion = obtenerSalaDeFuncion(lhorarios, lsalas, listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 		System.out.print("Cuantos asientos desea comprar:");
@@ -379,6 +379,7 @@ public class Taller02021 {
 			System.out.println("El total a pagar es: "+total);
 			if(lsaldos[posPersona] >= total) {
 				lsaldos[posPersona] = lsaldos[posPersona] - total;
+				contRecaudacionMañana[0]+=total;
 			}else {
 				System.out.println("Su saldo es insuficiente.....Desea recargar saldo? (SI) o (NO)");
 				String resp = leer.nextLine();
@@ -394,6 +395,7 @@ public class Taller02021 {
 			System.out.println("El total a pagar es: "+total);
 			if(lsaldos[posPersona] >= total) {
 				lsaldos[posPersona] = lsaldos[posPersona] - total;
+				contRecaudacionTarde[0]+=total;
 			}else {
 				System.out.println("Su saldo es insuficiente.....Desea recargar saldo? (SI) o (NO)");
 				String resp = leer.nextLine();
@@ -435,18 +437,24 @@ public class Taller02021 {
 	 */
 	
 
-	public static void eliminarEnMatriz(String [][] matriz,int cantClientes,int posFila,String dato) {
-		for(int j=0;j<cantClientes;j++) {
+	public static void eliminarEnMatriz(String [][] matriz,int cantColumnasAsientos,int posFila,String dato) {
+		int j;
+		for(j=0;j<cantColumnasAsientos;j++) {
 			if(matriz[posFila][j]==null) {
 				
 			}
 			else if(matriz[posFila][j].equals(dato)) {
 					matriz[posFila][j] = null;	
+					
 			}
 		}
+		for(int k=j;k<cantColumnasAsientos;k++) {
+			matriz[posFila][k]= matriz[posFila][k+1];
+		}
+		cantColumnasAsientos--;
 	}
 	
-	public static void devolucionEntrada(Double[] contRecaudacionMañana, Double[] contRecaudacionTarde,String [] listaLetras,int [] listanumeros,String [] ltipos,int cantClientes, String[] lnombres, String[] lapellidos, String rut, int posCliente, String[] rutsClientes,String[] listaPeliculas, String[] lhorarios, int[] lsalas, int[] listaCantEntradas,String[][] matrizAsientos, int[] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
+	public static void devolucionEntrada(String [] lpeliculas,int cantPeliculas,int cantColumnasAsientos,int[] contRecaudacionMañana, int[] contRecaudacionTarde,String [] listaLetras,int [] listanumeros,String [] ltipos,int cantClientes, String[] lnombres, String[] lapellidos, String rut, int posCliente, String[] rutsClientes,String[] listaPeliculas, String[] lhorarios, int[] lsalas, int[] listaCantEntradas,String[][] matrizAsientos, int[] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
 		System.out.println("Las entradas que usted tiene son: ");
 		infoUsuario(cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
 		System.out.print("Ingrese el nombre de la pelicula a la cual desea devolver las entradas:");
@@ -454,9 +462,9 @@ public class Taller02021 {
 		int posPelicula = buscarEnLista(listaPeliculas, listaPeliculas.length, nombrePelicula);
 		if(posPelicula == -1) {
 			System.out.println("pelicula no ecnontrada.");
-			devolucionEntrada(contRecaudacionTarde, contRecaudacionTarde, ltipos, listanumeros,listaLetras,cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T);
+			devolucionEntrada(lpeliculas,cantColumnasAsientos, cantPeliculas ,contRecaudacionMañana, contRecaudacionTarde, listaLetras, listanumeros,ltipos,cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T);
 		}else {
-			System.out.println("Ingrese la cantidad de entradas que desea devolver: ");
+			System.out.print("Ingrese la cantidad de entradas que desea devolver: ");
 			int cantEntradas = leer.nextInt();
 			leer.nextLine();
 			if(listaCantEntradas[posPelicula]>=cantEntradas && cantEntradas >0) {
@@ -471,52 +479,73 @@ public class Taller02021 {
 					int numSala = lsalas[posPelicula];
 					String horarioSala = lhorarios[posPelicula];
 					String dato =numSala+horarioSala;
+					String letraHorario ="";
 					for(int j=1;j<=3;j++) {
 						if(dato.equalsIgnoreCase(j+"M")) {
+							letraHorario += "M";
 							switch(j) {
 							case(1):matriz1M[posLetra][posNumero] = 0;
-									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
-									listaCantEntradas[posPelicula]--;
+									eliminarEnMatriz(matrizAsientos, cantColumnasAsientos, posPelicula, dato);
+									tituloMatriz(j,letraHorario);
 									imprimirSala(listanumeros, listaLetras, matriz1M);
 									break;
 							case(2):matriz2M[posLetra][posNumero] = 0;
-									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
-									listaCantEntradas[posPelicula]--;
-									tituloMatriz(j,dato);
+									eliminarEnMatriz(matrizAsientos, cantColumnasAsientos, posPelicula, dato);
+									tituloMatriz(j,letraHorario);
 									imprimirSala(listanumeros, listaLetras, matriz2M);
 									break;
 							case(3):matriz3M[posLetra][posNumero] = 0;
-									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
-									listaCantEntradas[posPelicula]--;
+									eliminarEnMatriz(matrizAsientos, cantColumnasAsientos, posPelicula, dato);
+									tituloMatriz(j,letraHorario);
 									imprimirSala(listanumeros, listaLetras, matriz3M);
 									break;
 							default:break;
 							}
 						}else if(dato.equals(j+"T")) {
+							letraHorario +="T";
 							switch(j) {
 							case(1):matriz1T[posLetra][posNumero] = 0;
-									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
-									listaCantEntradas[posPelicula]--;
+									eliminarEnMatriz(matrizAsientos, cantColumnasAsientos, posPelicula, dato);
 									imprimirSala(listanumeros, listaLetras, matriz1T);
 									break;
 							case(2):matriz2T[posLetra][posNumero] = 0;
-									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
-									listaCantEntradas[posPelicula]--;
+									eliminarEnMatriz(matrizAsientos, cantColumnasAsientos, posPelicula, dato);
 									imprimirSala(listanumeros, listaLetras, matriz2T);
 									break;
 							case(3):matriz3T[posLetra][posNumero] = 0;
-									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
-									listaCantEntradas[posPelicula]--;
+									eliminarEnMatriz(matrizAsientos, cantColumnasAsientos, posPelicula, dato);
 									imprimirSala(listanumeros, listaLetras, matriz3T);
 									break;
 							default:break;
 							}
 						}
+						int posTipoPelicula = buscarEnLista(lpeliculas, cantPeliculas, nombrePelicula);
+						int total;
+						if(ltipos[posTipoPelicula].equalsIgnoreCase("Estreno") && horarioSala == "M") {
+							 total = 5500*cantEntradas;
+							contRecaudacionMañana[0] -= (total*0.8); 
+							lsaldos[posCliente]+=  (total*0.8);
+						}else if (ltipos[posTipoPelicula].equalsIgnoreCase("Estreno") && horarioSala == "T"){
+							 total = 5500*cantEntradas;
+							contRecaudacionTarde[0] -= (total*0.8); 
+							lsaldos[posCliente]+=  (total*0.8);
+						}
+						
+						if(ltipos[posTipoPelicula].equalsIgnoreCase("Liberada") && horarioSala == "M") {
+							 total = 4000*cantEntradas;
+							contRecaudacionMañana[0] -= (total*0.8); 
+							lsaldos[posCliente]+=  (total*0.8);
+						}else if (ltipos[posTipoPelicula].equalsIgnoreCase("Liberada") && horarioSala == "T"){
+							 total = 4000*cantEntradas;
+							contRecaudacionTarde[0] -= (total*0.8); 
+							lsaldos[posCliente]+=  (total*0.8);
+						}
 					}
-					
+						
 				}
 			}
-		}		
+		}
+		System.out.println(contRecaudacionMañana[0]);
 	}
 	
 	/**
@@ -654,7 +683,7 @@ public class Taller02021 {
 		
 	}
 	
-	public static void menuCliente(Double[] contRecaudacionMañana ,Double[] contRecaudacionTarde,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
+	public static void menuCliente(int cantColumnasAsientos,int[] contRecaudacionMañana ,int[] contRecaudacionTarde,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
 		int cont = 0;
 		System.out.println("Bienvenido "+lnombres[posCliente]+" "+lapellidos[posCliente]);
 		String rut = lruts[posCliente];
@@ -672,10 +701,10 @@ public class Taller02021 {
 	    			rutsClientes[contPersona] = rut;
 	    			comprarEntrada(contRecaudacionMañana,contRecaudacionTarde,matrizAsientos, listaCantEntradas, lhorarios, lsalas, posCliente, lsaldos, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas, listaPeliculas, lpeliculas, ltipos, matrizTarde, matrizTarde);
 	    			break;
-	    		case("B"):infoUsuario(cantClientes,lnombres, lapellidos, rut, posCliente,rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos,lsaldos);
+	    		case("B"):infoUsuario(cantColumnasAsientos,lnombres, lapellidos, rut, posCliente,rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos,lsaldos);
 	    				break;
 	    		case("C"):
-	    			devolucionEntrada(contRecaudacionMañana,contRecaudacionTarde,listaLetras, listanumeros, ltipos, cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T);
+	    			devolucionEntrada(lpeliculas,cantPeliculas,cantColumnasAsientos,contRecaudacionMañana,contRecaudacionTarde,listaLetras, listanumeros, ltipos, cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T);
 	    				break;
 	    		case("D"):System.out.println("d");
 	    				
@@ -711,8 +740,8 @@ public class Taller02021 {
 		int [] lsalas = new int[200];
 		int [] listaCantEntradas = new int[200];
 		
-		Double[] contRecaudacionMañana = new Double[1];
-		Double[] contRecaudacionTarde = new Double[1];
+		int[] contRecaudacionMañana = new int[1];
+		int[] contRecaudacionTarde = new int[1];
 		
 		int estreno= 5500;
 		int liberada = 4000;
@@ -748,7 +777,11 @@ public class Taller02021 {
 		int [][] matriz3T =new int[10][30];
 		crearMatrizSala(listanumeros, listaLetras, matriz3T);
 		//
-		String [][] matrizAsientos = new String[200][10];
+		int cantidadListaDeAsientos = 200;
+		int cantColumnasAsientos = 20;
+		String [][] matrizAsientos = new String[cantidadListaDeAsientos][cantColumnasAsientos];
+		
+		
 		
 		int cantClientes = leerClientes(lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		String [] listaPaseMovilidad = new String[cantClientes];
@@ -769,7 +802,7 @@ public class Taller02021 {
 				break;
 			default:
 				avanzar(0);
-				menuCliente(contRecaudacionMañana, contRecaudacionTarde, rutsClientes,listaPeliculas,lhorarios,lsalas,listaCantEntradas,matrizAsientos,matriz1M,matriz2M,matriz3M,matriz1T, matriz2T, matriz3T,listanumeros,listaLetras,lpeliculas,ltipos,cantPeliculas,posPersona,matrizMañana,matrizTarde,lnombres,lapellidos,lruts,lcontraseñas,lsaldos,cantClientes);
+				menuCliente(cantColumnasAsientos,contRecaudacionMañana, contRecaudacionTarde, rutsClientes,listaPeliculas,lhorarios,lsalas,listaCantEntradas,matrizAsientos,matriz1M,matriz2M,matriz3M,matriz1T, matriz2T, matriz3T,listanumeros,listaLetras,lpeliculas,ltipos,cantPeliculas,posPersona,matrizMañana,matrizTarde,lnombres,lapellidos,lruts,lcontraseñas,lsaldos,cantClientes);
 				break;
 			}
 			System.out.println("Desea cerrar el sistema? (SI) o (NO)");
