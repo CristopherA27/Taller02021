@@ -63,7 +63,6 @@ public class Taller02021 {
 				int numeroSala = Integer.parseInt(partes[i]);
 				numeroSala--;
 				String horario = partes[i+1];
-				//System.out.println("\t"+numeroSala+" "+horario);
 				if(horario.equalsIgnoreCase("M")) {
 					matrizMañana[cont][numeroSala]=true;
 
@@ -439,19 +438,25 @@ public class Taller02021 {
 
 	public static void eliminarEnMatriz(String [][] matriz,int cantColumnasAsientos,int posFila,String dato) {
 		int j;
+		boolean encontrado = false;
 		for(j=0;j<cantColumnasAsientos;j++) {
 			if(matriz[posFila][j]==null) {
-				
+				break;
 			}
 			else if(matriz[posFila][j].equals(dato)) {
-					matriz[posFila][j] = null;	
-					
+					matriz[posFila][j] = null;
+					encontrado = true;
+					break;
+
 			}
 		}
-		for(int k=j;k<cantColumnasAsientos;k++) {
-			matriz[posFila][k]= matriz[posFila][k+1];
+		if(encontrado) {
+			for(int k=j;k<cantColumnasAsientos;k++) {
+				matriz[posFila][k]= matriz[posFila][k+1];
+			}
+			cantColumnasAsientos--;
 		}
-		cantColumnasAsientos--;
+		
 	}
 	
 	public static void devolucionEntrada(String [] lpeliculas,int cantPeliculas,int cantColumnasAsientos,int[] contRecaudacionMañana, int[] contRecaudacionTarde,String [] listaLetras,int [] listanumeros,String [] ltipos,int cantClientes, String[] lnombres, String[] lapellidos, String rut, int posCliente, String[] rutsClientes,String[] listaPeliculas, String[] lhorarios, int[] lsalas, int[] listaCantEntradas,String[][] matrizAsientos, int[] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
