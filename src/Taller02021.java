@@ -283,11 +283,11 @@ public class Taller02021 {
 		}
 	}
 	
-	public static boolean comprobarAsiento(String [][] matrizAsientos,String fila,int columna,String [] rutsClientes,int posCliente) {
+	/*public static boolean comprobarAsiento(String [][] matrizAsientos,String fila,int columna,String [] rutsClientes,int posCliente) {
 		for(int i=0;i<rutsClientes.length;i++) {
 			
 		}
-	}
+	}*/
 	
 
 	public static void infoUsuario(int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
@@ -400,7 +400,45 @@ public class Taller02021 {
 		
 	}
 	
+<<<<<<< HEAD
 	public static void devolucionEntrada(int [] listanumeros,String [] listaLetras,int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
+=======
+<<<<<<< HEAD
+	/**
+	 *The matrix entries of the movie theater that the user enters on screen will be eliminated.
+	 *@param listanumeros
+	 *@param listaLetras
+	 *@param cantClientes
+	 *@param lnombres
+	 *@param lapellidos
+	 *@param rut
+	 *@param posCliente
+	 *@param rutsClientes
+	 *@param listaPeliculas
+	 *@param lhorarios
+	 *@param lsalsas
+	 *@param listaCantEntradas
+	 *@param matrizAsientos
+	 *@param lsaldos
+	 */
+	
+	public static void devolucionEntrada(int [] contRecaudacionMañana ,int [] contRecaudacionTarde , int [] listanumeros,String [] listaLetras,int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos, String [] ltipos) {
+=======
+	public static void eliminarEnMatriz(String [][] matriz,int cantClientes,int posFila,String dato) {
+		for(int j=0;j<cantClientes;j++) {
+			if(matriz[posFila][j]==null) {
+				
+			}
+			else if(matriz[posFila][j].equals(dato)) {
+					matriz[posFila][j] = null;
+					
+			}
+		}
+	}
+	
+	public static void devolucionEntrada(int [] listanumeros,String [] listaLetras,int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
+>>>>>>> 87183d3f2875eecd7485897e8e4afc37e2dbfc99
+>>>>>>> parent of e31bdf2 (Revert "tu anciana")
 		System.out.println("Las entradas que usted tiene son: ");
 		infoUsuario(cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
 		System.out.print("Ingrese el nombre de la pelicula a la cual desea devolver las entradas:");
@@ -408,49 +446,90 @@ public class Taller02021 {
 		int posPelicula = buscarEnLista(listaPeliculas, listaPeliculas.length, nombrePelicula);
 		if(posPelicula == -1) {
 			System.out.println("pelicula no ecnontrada.");
-			devolucionEntrada(listanumeros,listaLetras,cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
+			devolucionEntrada(listanumeros,listaLetras,cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 		}else {
-			System.out.println("Ingrese la cantidad de entradas que desea devolver: ");
+			System.out.print("Ingrese la cantidad de entradas que desea devolver: ");
 			int cantEntradas = leer.nextInt();
 			leer.nextLine();
 			if(listaCantEntradas[posPelicula]>=cantEntradas && cantEntradas >0) {
 				for(int i=0;i<cantEntradas;i++) {
 					System.out.print("Ingrese la letra de la fila que desea devolver:");
 					String letraFila = leer.nextLine();
-					int posLetra = buscarEnLista(listaLetras, 10, letraFila);
+					int posLetra = buscarEnLista(listaLetras, 10, letraFila);//Busco en la lista la letra
 					System.out.print("Ingrese el numero de la columna que desea devolver: ");
 					int numeroColumna = leer.nextInt();
 					leer.nextLine();
-					int posNumero = buscarEnListaNumeros(listanumeros, 30, numeroColumna);
-					//String dato  = "";
+					int posNumero = buscarEnListaNumeros(listanumeros, 30, numeroColumna);//Busco en la lista el numero de columna
 					int numSala = lsalas[posPelicula];
 					String horarioSala = lhorarios[posPelicula];
-					System.out.println();
+					String dato  = numSala+horarioSala;
 					for(int j=1;j<=3;j++) {
+<<<<<<< HEAD
 						if(funcion.equalsIgnoreCase(j+"M")) {
 							dato +="M";
+<<<<<<< HEAD
+=======
+							
+							if(ltipos[posPelicula]=="estreno") {
+								contRecaudacionMañana[0] -= (5500*0.8);
+							}
+							if(ltipos[posPelicula]=="liberada") {
+								contRecaudacionMañana[0] -= (4000*0.8);
+							}
+							
+							
+=======
+						if(dato.equalsIgnoreCase(j+"M")) {
+>>>>>>> 87183d3f2875eecd7485897e8e4afc37e2dbfc99
+>>>>>>> parent of e31bdf2 (Revert "tu anciana")
 							switch(j) {
-							case(1):matriz1M[posLetra][posNumero] = 1;
+							case(1):matriz1M[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz1M);
 									break;
-							case(2):matriz2M[posLetra][posNumero] = 1;
+							case(2):matriz2M[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									tituloMatriz(j,dato);
 									imprimirSala(listanumeros, listaLetras, matriz2M);
 									break;
-							case(3):matriz3M[posLetra][posNumero] = 1;
+							case(3):matriz3M[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz3M);
 									break;
 							default:break;
 							}
+<<<<<<< HEAD
 						}else if(funcion.equals(j+"T")) {
+<<<<<<< HEAD
+=======
+							
+							if(ltipos[posPelicula]=="estreno") {
+								contRecaudacionTarde[0] -= (5500*0.8)
+							}
+							if(ltipos[posPelicula]=="liberada") {
+								contRecaudacionTarde[0] -= (4000*0.8)
+							}
+=======
+						}else if(dato.equals(j+"T")) {
+>>>>>>> 87183d3f2875eecd7485897e8e4afc37e2dbfc99
+>>>>>>> parent of e31bdf2 (Revert "tu anciana")
 							switch(j) {
-							case(1):matriz1T[posLetra][posNumero] = 1;
+							case(1):matriz1T[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz1T);
 									break;
-							case(2):matriz2T[posLetra][posNumero] = 1;
+							case(2):matriz2T[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz2T);
 									break;
-							case(3):matriz3T[posLetra][posNumero] = 1;
+							case(3):matriz3T[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz3T);
 									break;
 							default:break;
@@ -464,6 +543,7 @@ public class Taller02021 {
 		}
 		
 	}
+<<<<<<< HEAD
 	/*for(int i=0;i<cantAsientos;i++) {
 			System.out.println("Asiento "+(i+1)+"\t");
 			System.out.print("Ingrese la letra de la fila que desea comprar:");
@@ -512,7 +592,19 @@ public class Taller02021 {
 	
 	
 	
+<<<<<<< HEAD
 	
+=======
+	/**
+	 * charge the balance corresponding to the customer entered
+	 * @param posCliente
+	 * @param cantClientes
+	 * @param lsaldos
+	 */
+=======
+	
+>>>>>>> 87183d3f2875eecd7485897e8e4afc37e2dbfc99
+>>>>>>> parent of e31bdf2 (Revert "tu anciana")
 	
 	public static void cargarSaldo(int posCliente, int cantClientes,int [] lsaldos) {
 		System.out.println("Cuanto dinero desea gregar a su saldo?: ");
@@ -662,7 +754,7 @@ public class Taller02021 {
 	    		case("B"):infoUsuario(cantClientes,lnombres, lapellidos, rut, posCliente,rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos,lsaldos);
 	    				break;
 	    		case("C"):
-	    			devolucionEntrada(cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
+	    			devolucionEntrada(listanumeros, listaLetras, cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 	    				break;
 	    		case("D"):System.out.println("d");
 	    				
