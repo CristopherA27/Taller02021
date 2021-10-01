@@ -282,13 +282,7 @@ public class Taller02021 {
 			}
 		}
 	}
-	
-	public static boolean comprobarAsiento(String [][] matrizAsientos,String fila,int columna,String [] rutsClientes,int posCliente) {
-		for(int i=0;i<rutsClientes.length;i++) {
-			
-		}
-	}
-	
+
 
 	public static void infoUsuario(int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
 		for(int i=0;i<cantClientes;i++) {
@@ -305,11 +299,6 @@ public class Taller02021 {
 		}
 		System.out.println();
 	}
-	
-<<<<<<< HEAD
-
-	public static void comprarEntrada(String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int [] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas,String [] listaPeliculas,String [] lpeliculas,String [] ltipos,boolean [][] matrizMañana,boolean [][] matrizTarde) {
-=======
 	/**
 	 *This function will obtain the seats to buy on the screen and will fill the matrix of the corresponding room with a 1 when buying the seat
 	 *@param matrizAsientos
@@ -334,18 +323,13 @@ public class Taller02021 {
 	 *@param matrizTarde
 	 */
 	
-	public static void comprarEntrada( int [] contRecaudacionMañana ,int [] contRecaudacionTarde ,String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int [] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas,String [] listaPeliculas,String [] lpeliculas,String [] ltipos,boolean [][] matrizMañana,boolean [][] matrizTarde) {
->>>>>>> parent of 06c0d41 (Revert "Cris me cai como la cornetera")
+	public static void comprarEntrada( Double[] contRecaudacionMañana ,Double[] contRecaudacionTarde ,String [][] matrizAsientos,int [] listaCantEntradas,String [] lhorarios,int [] lsalas,int posPersona,int [] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,int cantPeliculas,String [] listaPeliculas,String [] lpeliculas,String [] ltipos,boolean [][] matrizMañana,boolean [][] matrizTarde) {
 		int posPelicula = horariosDisponiblesPelicula(listaPeliculas, lpeliculas, ltipos, cantPeliculas, matrizMañana, matrizTarde);
 		String funcion = obtenerSalaDeFuncion(lhorarios, lsalas, listanumeros, listaLetras, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T);
 		System.out.print("Cuantos asientos desea comprar:");
 		int cantAsientos = leer.nextInt();
 		listaCantEntradas[contPersona] = cantAsientos;
 		leer.nextLine();
-		
-	
-	
-		
 		for(int i=0;i<cantAsientos;i++) {
 			System.out.println("Asiento "+(i+1)+"\t");
 			System.out.print("Ingrese la letra de la fila que desea comprar:");
@@ -359,14 +343,6 @@ public class Taller02021 {
 			matrizAsientos[contPersona][i]=letraFila+""+numeroColumna;
 			for(int j=1;j<=3;j++) {
 				if(funcion.equalsIgnoreCase(j+"M")) {
-					
-					if(ltipos[posPelicula]=="estreno") {
-						contRecaudacionMañana[0] += (5500*cantAsientos); 
-					
-					}
-					if(ltipos[posPelicula]=="liberada") {
-						contRecaudacionMañana[0] += (4000*cantAsientos);
-							
 					dato +="M";
 					switch(j) {
 					case(1):matriz1M[posLetra][posNumero] = 1;
@@ -382,14 +358,6 @@ public class Taller02021 {
 					default:break;
 					}
 				}else if(funcion.equals(j+"T")) {
-					
-					if(ltipos[posPelicula]=="estreno") {
-						contRecaudacionTarde[0] += (5500*cantAsientos)
-					
-					}
-					if(ltipos[posPelicula]=="liberada") {
-						contRecaudacionTarde[0] += (4000*cantAsientos)
-					
 					switch(j) {
 					case(1):matriz1T[posLetra][posNumero] = 1;
 							imprimirSala(listanumeros, listaLetras, matriz1T);
@@ -447,14 +415,7 @@ public class Taller02021 {
 		}	
 		
 	}
-	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public static void devolucionEntrada(int [] listanumeros,String [] listaLetras,int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
-=======
-<<<<<<< HEAD
-=======
->>>>>>> parent of dd8b9c6 (tu anciana)
+
 	/**
 	 *The matrix entries of the movie theater that the user enters on screen will be eliminated.
 	 *@param listanumeros
@@ -473,29 +434,19 @@ public class Taller02021 {
 	 *@param lsaldos
 	 */
 	
-	public static void devolucionEntrada(int [] contRecaudacionMañana ,int [] contRecaudacionTarde , int [] listanumeros,String [] listaLetras,int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos, String [] ltipos) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 	public static void eliminarEnMatriz(String [][] matriz,int cantClientes,int posFila,String dato) {
 		for(int j=0;j<cantClientes;j++) {
 			if(matriz[posFila][j]==null) {
 				
 			}
 			else if(matriz[posFila][j].equals(dato)) {
-					matriz[posFila][j] = null;
-					
+					matriz[posFila][j] = null;	
 			}
 		}
 	}
 	
-	public static void devolucionEntrada(int [] listanumeros,String [] listaLetras,int cantClientes,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
->>>>>>> 87183d3f2875eecd7485897e8e4afc37e2dbfc99
->>>>>>> parent of e31bdf2 (Revert "tu anciana")
-=======
->>>>>>> parent of 06c0d41 (Revert "Cris me cai como la cornetera")
-=======
->>>>>>> parent of dd8b9c6 (tu anciana)
+	public static void devolucionEntrada(Double[] contRecaudacionMañana, Double[] contRecaudacionTarde,String [] listaLetras,int [] listanumeros,String [] ltipos,int cantClientes, String[] lnombres, String[] lapellidos, String rut, int posCliente, String[] rutsClientes,String[] listaPeliculas, String[] lhorarios, int[] lsalas, int[] listaCantEntradas,String[][] matrizAsientos, int[] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
 		System.out.println("Las entradas que usted tiene son: ");
 		infoUsuario(cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
 		System.out.print("Ingrese el nombre de la pelicula a la cual desea devolver las entradas:");
@@ -503,7 +454,7 @@ public class Taller02021 {
 		int posPelicula = buscarEnLista(listaPeliculas, listaPeliculas.length, nombrePelicula);
 		if(posPelicula == -1) {
 			System.out.println("pelicula no ecnontrada.");
-			devolucionEntrada(listanumeros,listaLetras,cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
+			devolucionEntrada(contRecaudacionTarde, contRecaudacionTarde, ltipos, listanumeros,listaLetras,cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T);
 		}else {
 			System.out.println("Ingrese la cantidad de entradas que desea devolver: ");
 			int cantEntradas = leer.nextInt();
@@ -517,81 +468,45 @@ public class Taller02021 {
 					int numeroColumna = leer.nextInt();
 					leer.nextLine();
 					int posNumero = buscarEnListaNumeros(listanumeros, 30, numeroColumna);
-					//String dato  = "";
 					int numSala = lsalas[posPelicula];
 					String horarioSala = lhorarios[posPelicula];
-					System.out.println();
+					String dato =numSala+horarioSala;
 					for(int j=1;j<=3;j++) {
-						if(funcion.equalsIgnoreCase(j+"M")) {
-							dato +="M";
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 06c0d41 (Revert "Cris me cai como la cornetera")
-							
-							if(ltipos[posPelicula]=="estreno") {
-								contRecaudacionMañana[0] -= (5500*0.8);
-							}
-							if(ltipos[posPelicula]=="liberada") {
-								contRecaudacionMañana[0] -= (4000*0.8);
-							}
-							
-							
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 						if(dato.equalsIgnoreCase(j+"M")) {
->>>>>>> 87183d3f2875eecd7485897e8e4afc37e2dbfc99
->>>>>>> parent of e31bdf2 (Revert "tu anciana")
-=======
->>>>>>> parent of 06c0d41 (Revert "Cris me cai como la cornetera")
-=======
->>>>>>> parent of dd8b9c6 (tu anciana)
 							switch(j) {
-							case(1):matriz1M[posLetra][posNumero] = 1;
+							case(1):matriz1M[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz1M);
 									break;
-							case(2):matriz2M[posLetra][posNumero] = 1;
+							case(2):matriz2M[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									tituloMatriz(j,dato);
 									imprimirSala(listanumeros, listaLetras, matriz2M);
 									break;
-							case(3):matriz3M[posLetra][posNumero] = 1;
+							case(3):matriz3M[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz3M);
 									break;
 							default:break;
 							}
-						}else if(funcion.equals(j+"T")) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 06c0d41 (Revert "Cris me cai como la cornetera")
-							
-							if(ltipos[posPelicula]=="estreno") {
-								contRecaudacionTarde[0] -= (5500*0.8)
-							}
-							if(ltipos[posPelicula]=="liberada") {
-								contRecaudacionTarde[0] -= (4000*0.8)
-							}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 						}else if(dato.equals(j+"T")) {
->>>>>>> 87183d3f2875eecd7485897e8e4afc37e2dbfc99
->>>>>>> parent of e31bdf2 (Revert "tu anciana")
-=======
->>>>>>> parent of 06c0d41 (Revert "Cris me cai como la cornetera")
-=======
->>>>>>> parent of dd8b9c6 (tu anciana)
 							switch(j) {
-							case(1):matriz1T[posLetra][posNumero] = 1;
+							case(1):matriz1T[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz1T);
 									break;
-							case(2):matriz2T[posLetra][posNumero] = 1;
+							case(2):matriz2T[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz2T);
 									break;
-							case(3):matriz3T[posLetra][posNumero] = 1;
+							case(3):matriz3T[posLetra][posNumero] = 0;
+									eliminarEnMatriz(matrizAsientos, cantClientes, posPelicula, dato);
+									listaCantEntradas[posPelicula]--;
 									imprimirSala(listanumeros, listaLetras, matriz3T);
 									break;
 							default:break;
@@ -601,74 +516,16 @@ public class Taller02021 {
 					
 				}
 			}
-			
-		}
-		
+		}		
 	}
-	/*for(int i=0;i<cantAsientos;i++) {
-			System.out.println("Asiento "+(i+1)+"\t");
-			System.out.print("Ingrese la letra de la fila que desea comprar:");
-			String letraFila = leer.nextLine();
-			int posLetra = buscarEnLista(listaLetras, 10, letraFila);
-			System.out.print("Ingrese el numero de la columna que desea comprar: ");
-			int numeroColumna = leer.nextInt();
-			leer.nextLine();
-			int posNumero = buscarEnListaNumeros(listanumeros, 30, numeroColumna);
-			String dato  = "";
-			matrizAsientos[contPersona][i]=letraFila+""+numeroColumna;
-			for(int j=1;j<=3;j++) {
-				if(funcion.equalsIgnoreCase(j+"M")) {
-					dato +="M";
-					switch(j) {
-					case(1):matriz1M[posLetra][posNumero] = 1;
-							imprimirSala(listanumeros, listaLetras, matriz1M);
-							break;
-					case(2):matriz2M[posLetra][posNumero] = 1;
-							tituloMatriz(j,dato);
-							imprimirSala(listanumeros, listaLetras, matriz2M);
-							break;
-					case(3):matriz3M[posLetra][posNumero] = 1;
-							imprimirSala(listanumeros, listaLetras, matriz3M);
-							break;
-					default:break;
-					}
-				}else if(funcion.equals(j+"T")) {
-					switch(j) {
-					case(1):matriz1T[posLetra][posNumero] = 1;
-							imprimirSala(listanumeros, listaLetras, matriz1T);
-							break;
-					case(2):matriz2T[posLetra][posNumero] = 1;
-							imprimirSala(listanumeros, listaLetras, matriz2T);
-							break;
-					case(3):matriz3T[posLetra][posNumero] = 1;
-							imprimirSala(listanumeros, listaLetras, matriz3T);
-							break;
-					default:break;
-					}
-				}
-			}
-		}*/
 	
-	
-	
-	
-	
-<<<<<<< HEAD
-	
-=======
 	/**
 	 * charge the balance corresponding to the customer entered
 	 * @param posCliente
 	 * @param cantClientes
 	 * @param lsaldos
 	 */
-<<<<<<< HEAD
-=======
-	
->>>>>>> 87183d3f2875eecd7485897e8e4afc37e2dbfc99
->>>>>>> parent of e31bdf2 (Revert "tu anciana")
-=======
->>>>>>> parent of dd8b9c6 (tu anciana)
+
 	
 	public static void cargarSaldo(int posCliente, int cantClientes,int [] lsaldos) {
 		System.out.println("Cuanto dinero desea gregar a su saldo?: ");
@@ -797,7 +654,7 @@ public class Taller02021 {
 		
 	}
 	
-	public static void menuCliente(String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
+	public static void menuCliente(Double[] contRecaudacionMañana ,Double[] contRecaudacionTarde,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
 		int cont = 0;
 		System.out.println("Bienvenido "+lnombres[posCliente]+" "+lapellidos[posCliente]);
 		String rut = lruts[posCliente];
@@ -813,12 +670,12 @@ public class Taller02021 {
 	    	switch(opcion) {
 	    		case("A"):
 	    			rutsClientes[contPersona] = rut;
-	    			comprarEntrada(matrizAsientos, listaCantEntradas, lhorarios, lsalas, posCliente, lsaldos, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas, listaPeliculas, lpeliculas, ltipos, matrizTarde, matrizTarde);
+	    			comprarEntrada(contRecaudacionMañana,contRecaudacionTarde,matrizAsientos, listaCantEntradas, lhorarios, lsalas, posCliente, lsaldos, matriz1M, matriz2M, matriz3M, matriz1T, matriz2T, matriz3T, listanumeros, listaLetras, cantPeliculas, listaPeliculas, lpeliculas, ltipos, matrizTarde, matrizTarde);
 	    			break;
 	    		case("B"):infoUsuario(cantClientes,lnombres, lapellidos, rut, posCliente,rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos,lsaldos);
 	    				break;
 	    		case("C"):
-	    			devolucionEntrada(cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos);
+	    			devolucionEntrada(contRecaudacionMañana,contRecaudacionTarde,listaLetras, listanumeros, ltipos, cantClientes, lnombres, lapellidos, rut, posCliente, rutsClientes, listaPeliculas, lhorarios, lsalas, listaCantEntradas, matrizAsientos, lsaldos, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T, matriz3T);
 	    				break;
 	    		case("D"):System.out.println("d");
 	    				
@@ -836,7 +693,7 @@ public class Taller02021 {
 		System.out.println("\tSALIENDO DEL MENU CLIENTE");
 	}
 
-	
+
 	public static void main(String[] args) throws FileNotFoundException {
 		int cantListas = 200;
 		String [] lnombres = new String[200];
@@ -854,8 +711,8 @@ public class Taller02021 {
 		int [] lsalas = new int[200];
 		int [] listaCantEntradas = new int[200];
 		
-		int [] contRecaudacionMañana = new int[1];
-		int [] contRecaudacionTarde = new int[1];
+		Double[] contRecaudacionMañana = new Double[1];
+		Double[] contRecaudacionTarde = new Double[1];
 		
 		int estreno= 5500;
 		int liberada = 4000;
@@ -912,7 +769,7 @@ public class Taller02021 {
 				break;
 			default:
 				avanzar(0);
-				menuCliente(rutsClientes,listaPeliculas,lhorarios,lsalas,listaCantEntradas,matrizAsientos,matriz1M,matriz2M,matriz3M,matriz1T, matriz2T, matriz3T,listanumeros,listaLetras,lpeliculas,ltipos,cantPeliculas,posPersona,matrizMañana,matrizTarde,lnombres,lapellidos,lruts,lcontraseñas,lsaldos,cantClientes);
+				menuCliente(contRecaudacionMañana, contRecaudacionTarde, rutsClientes,listaPeliculas,lhorarios,lsalas,listaCantEntradas,matrizAsientos,matriz1M,matriz2M,matriz3M,matriz1T, matriz2T, matriz3T,listanumeros,listaLetras,lpeliculas,ltipos,cantPeliculas,posPersona,matrizMañana,matrizTarde,lnombres,lapellidos,lruts,lcontraseñas,lsaldos,cantClientes);
 				break;
 			}
 			System.out.println("Desea cerrar el sistema? (SI) o (NO)");
