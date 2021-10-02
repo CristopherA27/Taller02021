@@ -264,28 +264,6 @@ public class Taller02021 {
 		System.out.println();
 		avanzar(0);
 	}
-	public static void ingresarLista(int cantidad,String [] lista,String dato ) {
-		for(int i=0;i<cantidad;i++) {
-			if(lista[i].equals(null)) {
-				lista[i] = dato;
-			}
-			if(i==cantidad) {
-				System.out.println("No hay mas espacio para guardar el dato");
-			}
-		}
-	}
-	
-	public static void ingresarListaSalas(int cantidad,int [] lista,int dato ) {
-		for(int i=0;i<cantidad;i++) {
-			if(lista[i]==0) {
-				lista[i] = dato;
-			}
-			if(i==cantidad) {
-				System.out.println("No hay mas espacio para guardar el dato");
-			}
-		}
-	}
-
 
 	public static void infoUsuario(int cantidadListaDeAsientos,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
 		for(int i=0;i<cantidadListaDeAsientos;i++) {
