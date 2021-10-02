@@ -1,6 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+
+import ucn.ArchivoSalida;
+import ucn.Registro;
 
 public class Taller02021 {
 	
@@ -749,7 +753,7 @@ public class Taller02021 {
 	}
 
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 		int cantListas = 200;
 		String [] lnombres = new String[200];
 		String [] lapellidos  = new String[200];
@@ -841,11 +845,87 @@ public class Taller02021 {
 				break;
 			}
 		}
+		sobreescribir(matrizMañana, matrizTarde, listaPaseMovilidad, cantClientes, cantPeliculas, lnombres, lapellidos, lruts, lcontraseñas, lsaldos);
 		System.out.println("DATOS SOBREESCRITOS");
 
 	}
 	
+	public static void sobreescribir(boolean [][] matrizMañana,boolean [][] matrizTarde,String [] listaPaseMovilidad,int cantClientes,int cantPeliculas,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos) throws IOException {
+		ArchivoSalida arch1 = new ArchivoSalida("clientes.txt");
+		for(int i=0;i<cantClientes;i++) {
+			Registro reg = new Registro(25);
+			reg.agregarCampo(lnombres[i]);
+			reg.agregarCampo(lapellidos[i]);
+			reg.agregarCampo(lruts[i]);
+			reg.agregarCampo(lcontraseñas[i]);
+			reg.agregarCampo(lsaldos[i]);
+		}
+		arch1.close();
+		ArchivoSalida arch2 = new ArchivoSalida("status.txt");
+		for(int k=0;k<cantClientes;k++) {
+			Registro reg2 = new Registro(2);
+			reg2.agregarCampo(listaPaseMovilidad[k]);
+		}
+		arch2.close();
+		ArchivoSalida arch3 = new ArchivoSalida("peliculas.txt");
+		int cont = 0;
+		int sala;
+		String horario;
+		for(int j=0;j<cantPeliculas;j++) {
+			if(matrizMañana[j][0] ==true) {
+				sala = 1;
+				horario = "M";
+			}
+			if(matrizMañana[j][0] ==true) {
+				sala = 2;
+				horario = "M";
+			}
+			if(matrizMañana[j][0] ==true) {
+				sala = 3;
+				horario = "M";
+			}
+			if(matrizTarde[j][0] ==true) {
+				sala = 1;
+				horario = "T";
+			}
+			if(matrizTarde[j][0] ==true) {
+				sala = 2;
+				horario = "T";
+			}
+			if(matrizTarde[j][0] ==true) {
+				sala = 3;
+				horario = "T";
+			}
+		}
+		arch3.close();
+	}
+	
 	public static Scanner leer = new Scanner(System.in);
 	public static int contPersona = 0;
+/*
+ * String line = s.nextLine();
+			//System.out.println(line);
+			String [] partes = line.split(",");
+			String nombrePelicula = partes[0];
+			String tipo = partes[1];
+			int recaudacion = Integer.parseInt(partes[2]);
+			for(int i=3;i<partes.length;i+=2) {
+				int numeroSala = Integer.parseInt(partes[i]);
+				numeroSala--;
+				String horario = partes[i+1];
+				if(horario.equalsIgnoreCase("M")) {
+					matrizMañana[cont][numeroSala]=true;
 
+				}else{
+					if(horario.equalsIgnoreCase("T")) {
+						matrizTarde[cont][numeroSala]=true;
+						
+					}
+				}
+			}
+			lpeliculas[cont] = nombrePelicula;
+			ltipos[cont] = tipo;
+			listaRecaudacionPelicula[cont] = recaudacion;
+			cont++;
+ */
 }
