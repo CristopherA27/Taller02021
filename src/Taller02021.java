@@ -6,7 +6,22 @@ import java.util.Scanner;
 import ucn.ArchivoSalida;
 import ucn.Registro;
 
+
+
+
+
 public class Taller02021 {
+	
+	/**
+	 * saves the customer data in lists and returns the size of the customer list
+	 * @param lnombres
+	 * @param lapellidos
+	 * @param lruts
+	 * @param lcontraseñas
+	 * @param lsaldos
+	 * @throws FileNotFoundException 
+	 * return cont
+	 */
 	
 	public static int leerClientes(String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("clientes.txt"));
@@ -30,6 +45,14 @@ public class Taller02021 {
 		return cont;
 	}
 	
+	/**
+	 * save the status of the clients in a parallel list
+	 * @param lruts
+	 * @param listaPaseMovilidad
+	 * @param cantClientes
+	 * @throws FileNotFoundException
+	 */
+	
 	public static void leerStatus(String [] lruts,String [] listaPaseMovilidad,int cantClientes) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("status.txt"));
 		while(s.hasNextLine()) {
@@ -45,6 +68,11 @@ public class Taller02021 {
 		s.close();		
 	}
 	
+	/**
+	 * takes the step to the next function
+	 * @param num
+	 */
+	
 	public static void avanzar(int num) {
 		if(num == 1) {
 			System.out.println("\tPrecione Enter para continuar");
@@ -52,6 +80,17 @@ public class Taller02021 {
 		}
 		System.out.println("-------------------------------------------");
 	}
+	
+	/**
+	 * the data of the movies is saved in lists and the size of the movie list is returned
+	 * @param lpeliculas
+	 * @param ltipos
+	 * @param listaRecaudacionPelicula
+	 * @param matrizMañana
+	 * @param matrizTarde
+	 * @throws FileNotFoundException
+	 * return cont
+	 */
 	
 	public static int leerPeliculas(String [] lpeliculas,String [] ltipos,int [] listaRecaudacionPelicula,boolean [][] matrizMañana,boolean [][] matrizTarde) throws FileNotFoundException {
 		Scanner s = new Scanner(new File("peliculas.txt"));
@@ -86,6 +125,14 @@ public class Taller02021 {
 		return cont;
 	}
 	
+	/**
+	 * searches a list for the position of the requested element
+	 * @param lista
+	 * @param cantidad
+	 * @param dato
+	 * return int
+	 */
+	
 	
 	public static int buscarEnLista(String [] lista,int cantidad,String dato) {
 		for(int i=0;i<cantidad;i++) {
@@ -99,6 +146,14 @@ public class Taller02021 {
 		return -1;
 	}
 	
+	/**
+	 * look for the position of the number in the list, to return it
+	 * @param lsita
+	 * @param cantidad
+	 * @param dato
+	 * return i
+	 */
+	
 	public static int buscarEnListaNumeros(int []lista,int cantidad,int dato) {
 		for(int i=0;i<cantidad;i++) {
 			if(lista[i]==0) {
@@ -111,6 +166,11 @@ public class Taller02021 {
 		return -1;
 	}
 	
+	/**
+	 * edit the rut entered on the screen and return the new rut
+	 * @param rutNormal
+	 * return nuevoRut
+	 */
 	
 	public static String verificarRut(String rutNormal) {
 		String nuevoRut = rutNormal.replace(".","");
@@ -118,7 +178,14 @@ public class Taller02021 {
 		nuevoRut = nuevoRut.replace("K","k");
 		return nuevoRut;
 	}
-	//sirve para crear la matriz
+	
+	/**
+	 * models the matrix used for seats in movie theaters
+	 * @param lista
+	 * @param listaLetras
+	 * @param matriz
+	 */
+	
 	public static void crearMatrizSala(int [] lista,String [] listaLetras,int [][]matriz) {
 		for(int fila=0;fila<10;fila++) {
 			for(int columna=0;columna<30;columna++) {
@@ -138,6 +205,13 @@ public class Taller02021 {
 		}
     }
 	
+	/**
+	 * prints the room matrix that is entered
+	 * @param lista
+	 * @param listaLetras
+	 * @param matriz
+	 */
+	
 	public static void imprimirSala(int [] lista,String [] listaLetras,int [][]matriz) {
 		reglasSala();
 		for(int k=0;k<30;k++) {
@@ -155,6 +229,15 @@ public class Taller02021 {
 		}
 	}
 	
+	/**
+	 * checks if the client has the mobility pass enabled to return a boolean type data
+	 * @param lruts
+	 * @param listaPaseMovilidad
+	 * @param cantClientes
+	 *@param posCliente
+	 *return boolean
+	 */
+	
 	public static boolean tienePaseMovilidad(String [] lruts,String [] listaPaseMovilidad,int cantClientes,int posCliente) {
 		for(int i=0;i<cantClientes;i++) {
 			if(listaPaseMovilidad[posCliente].equals("HABILITADO"));
@@ -163,7 +246,16 @@ public class Taller02021 {
 		return false;
 	}
 	
-	//Esta Lista
+	/**
+	 *The available times of the movie entered on the screen will be obtained.
+	 *@param listaPeliculas
+	 *@param lpeliculas
+	 *@param ltipos
+	 *@param cantPeliculas
+	 *@param matrizMañana
+	 *@param matrizTarde 
+	 */
+	
 	public static int horariosDisponiblesPelicula(String [] listaPeliculas,String [] lpeliculas,String [] ltipos,int cantPeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde) {
 		System.out.print("Ingrese el nombre de la pelicula para ver sus horarios: ");
 		String pelicula = leer.nextLine();
@@ -186,6 +278,21 @@ public class Taller02021 {
 
 	}
 
+	/**
+	 * returns the function that was entered by keyboard
+	 * @param lhorarios
+	 * @param lsalas
+	 * @param listanumeros
+	 * @param listaLetras
+	 * @param matriz1M
+	 * @param matriz2M
+	 * @param matriz3M
+	 * @param matriz1T
+	 * @param matriz2T
+	 * @param matriz3T
+	 * return funcion
+	 */
+	
 	public static String obtenerSalaDeFuncion(String [] lhorarios,int [] lsalas,int [] listanumeros,String [] listaLetras,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
 		int cont = 0;
 		System.out.print("Seleccione la funcion a la que desea comprar entradas:");
@@ -250,11 +357,19 @@ public class Taller02021 {
 		int [] listaCantEntradas = new int[200];*/
 	
 	
-	
+	/**
+	 * displays the name of the room that was selected
+	 * @param i
+	 * @param dato
+	 */
 	
 	public static void tituloMatriz(int i,String dato) {
 		System.out.println("\t-------------------------------------------------------SALA "+i+dato+"-------------------------------------------------\t|");
 	}
+	
+	/**
+	 *displays the room rules on the screen 
+	 */
 	
 	public static void reglasSala() {
 		System.out.println();
@@ -264,6 +379,22 @@ public class Taller02021 {
 		System.out.println();
 		avanzar(0);
 	}
+	
+	/**
+	 * Customer information will be obtained with their respective purchased tickets.
+	 * @param cantidadListaDeAsientos
+	 * @param lnombres
+	 * @param lapellidos
+	 * @param rut
+	 * @param posCliente
+	 * @param rutsClientes
+	 * @param listaPeliculas
+	 * @param lhorarios
+	 * @param lsalas
+	 * @param listaCantEntradas
+	 * @param matrizAsientos
+	 * @param lsaldos
+	 */
 
 	public static void infoUsuario(int cantidadListaDeAsientos,String [] lnombres,String [] lapellidos,String rut,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos) {
 		for(int i=0;i<cantidadListaDeAsientos;i++) {
@@ -283,6 +414,8 @@ public class Taller02021 {
 	/**
 	 *This function will obtain the seats to buy on the screen and will fill the matrix of the corresponding room with a 1 when buying the seat
 	 *@param matrizAsientos
+	 *@param contRecaudacionMañana
+	 *@param contRecaudacionTarde
 	 *@param listaCantEntradas
 	 *@param lhorarios
 	 *@param lsalas
@@ -401,22 +534,11 @@ public class Taller02021 {
 
 	/**
 	 *The matrix entries of the movie theater that the user enters on screen will be eliminated.
-	 *@param listanumeros
-	 *@param listaLetras
-	 *@param cantClientes
-	 *@param lnombres
-	 *@param lapellidos
-	 *@param rut
-	 *@param posCliente
-	 *@param rutsClientes
-	 *@param listaPeliculas
-	 *@param lhorarios
-	 *@param lsalsas
-	 *@param listaCantEntradas
-	 *@param matrizAsientos
-	 *@param lsaldos
+	 *@param matriz
+	 *@param cantColumnasAsientos
+	 *@param posFila
+	 *@param dato
 	 */
-	
 
 	public static void eliminarEnMatriz(String [][] matriz,int cantColumnasAsientos,int posFila,String dato) {
 		int j;
@@ -440,6 +562,36 @@ public class Taller02021 {
 		}
 		
 	}
+	
+	/**
+	 * allows to make the corresponding arrangements at the time of returning the ticket
+	 * @param lpeliculas
+	 * @param cantPeliculas
+	 * @param cantColumnasAsientos
+	 * @param contRecaudacionMañana
+	 * @param contRecaudacionTarde
+	 * @param listaLetras
+	 * @param listanumeros
+	 * @param ltipos
+	 * @param cantClientes
+	 * @param lnombres
+	 * @param lapellidos
+	 * @param rut
+	 * @param posCliente
+	 * @param rutsClientes
+	 * @param listaPeliculas
+	 * @param lhorarios
+	 * @param lsalas
+	 * @param listaCantEntradas
+	 * @param matrizAsientos
+	 * @param lsaldos
+	 * @param matriz1M
+	 * @param matriz2M
+	 * @param matriz3M
+	 * @param matriz1T
+	 * @param matriz2T
+	 * @param matriz3T
+	 */
 	
 	public static void devolucionEntrada(String [] lpeliculas,int cantPeliculas,int cantColumnasAsientos,int[] contRecaudacionMañana, int[] contRecaudacionTarde,String [] listaLetras,int [] listanumeros,String [] ltipos,int cantClientes, String[] lnombres, String[] lapellidos, String rut, int posCliente, String[] rutsClientes,String[] listaPeliculas, String[] lhorarios, int[] lsalas, int[] listaCantEntradas,String[][] matrizAsientos, int[] lsaldos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T) {
 		System.out.println("Las entradas que usted tiene son: ");
@@ -549,6 +701,11 @@ public class Taller02021 {
 		
 	}	
 	
+	/**
+	 * this function fills a list with the letters from A to J
+	 * @param lista
+	 */
+	
 	public static void rellenarListaLetras(String [] lista) {
 		for(int i=0;i<10;i++) {
 			switch(i+1) {
@@ -567,6 +724,14 @@ public class Taller02021 {
 		}
 	}
 	
+	/**
+	 * The movies on the billboard and their respective schedules will be obtained.
+	 * @param lpeliculas
+	 * @param matrizMañana
+	 * @param matrizTarde
+	 * @param cantPeliculas
+	 */
+	
 	public static void obtenerCartelera(String [] lpeliculas,boolean [][] matrizMañana,boolean [][] matrizTarde,int cantPeliculas) {
 		System.out.println("Los horarios disponibles son: ");
 		for(int i=0;i<cantPeliculas;i++) {
@@ -581,6 +746,17 @@ public class Taller02021 {
 			}
 		}
 	}
+	
+	/**
+	 * With this function a new user will be registered.
+	 * @param lnombres
+	 * @param lapellidos
+	 * @param lruts
+	 * @param lcontraseñas
+	 * @param lsaldos
+	 * @param cantClientes
+	 * return boolean
+	 */
 	
 	public static boolean registrar(String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
 		System.out.print("Ingresa tu Nombre");
@@ -607,6 +783,19 @@ public class Taller02021 {
 		System.out.println("No se puedo realizar el registro");
 		return false;
 	}
+	
+	/**
+	 * This function will recognize if the data of the user entered exists or if it is an administrator
+	 *  and if any data entered is incorrect, it will request the information again.Finally returns the customer's position in the list.
+	 *  @param rutsClientes
+	 *  @param lnombres
+	 *  @param lapellidos
+	 *  @param lruts
+	 *  @param lcontraseñas
+	 *  @param lsaldos
+	 *  @param cantClientes
+	 *  return int
+	 */
 	
 	public static int iniciarSesion(String [] rutsClientes,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
 		int cont = 0;
@@ -659,7 +848,23 @@ public class Taller02021 {
 		}
 	}
 	 
-
+	/**
+	 * this function opens the Admin menu and calls the corresponding subprograms
+	 * @param cantidadListaDeAsientos
+	 * @param lnombres
+	 * @param lapellidos
+	 * @param posCliente
+	 * @param rutsClientes
+	 * @param listaPeliculas
+	 * @param lhorarios
+	 * @param lsalas
+	 * @param listaCantEntradas
+	 * @param matrizAsientos
+	 * @param lsaldos
+	 * @param contRecaudacionMañana
+	 * @param contRecaudacionTarde
+	 */
+	
 	public static void menuAdmin(int cantidadListaDeAsientos,String [] lnombres,String [] lapellidos,int posCliente,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[] lsaldos,int[] contRecaudacionMañana ,int[] contRecaudacionTarde) {
 		while(true) {
 			System.out.println("Bienvenido al Menu ADMIN estas son las opciones disponibles");
@@ -693,6 +898,39 @@ public class Taller02021 {
 		System.out.println("Saliendo del Menu ADMIN");
 		
 	}
+	
+	/**
+	 *display the client menu
+	 *@param cantColumnasAsientos
+	 *@param contRecaudacionMañana
+	 *@param contRecaudacionTarde
+	 *@param rutsClientes
+	 *@param listaPeliculas
+	 *@param lhorarios
+	 *@param lsalas
+	 *@param listaCantEntradas
+	 *@param matrizAsientoS
+	 *@param matriz1M
+	 *@param matriz2M
+	 *@param matriz3M
+	 *@param matriz1T
+	 *@param matriz2T
+	 *@param matriz3T
+	 *@param listaNumeros
+	 *@param listaLetras
+	 *@param lpeliculas
+	 *@param ltipos
+	 *@param cantPeliculas
+	 *@param posCliente
+	 *@param matrizMañana
+	 *@param matrizTarde
+	 *@param lnombres
+	 *@param lapellidos
+	 *@param lruts
+	 *@param lcontraseñas
+	 *@param lsaldos
+	 *@param cantClientes
+	 */
 	
 	public static void menuCliente(int cantColumnasAsientos,int[] contRecaudacionMañana ,int[] contRecaudacionTarde,String [] rutsClientes,String [] listaPeliculas,String [] lhorarios,int [] lsalas,int [] listaCantEntradas,String [][] matrizAsientos,int[][]matriz1M,int [][] matriz2M,int [][] matriz3M,int [][] matriz1T,int [][] matriz2T,int [][] matriz3T,int [] listanumeros,String [] listaLetras,String [] lpeliculas,String [] ltipos,int cantPeliculas,int posCliente,boolean [][] matrizMañana,boolean [][] matrizTarde,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos,int cantClientes) {
 		System.out.println("Bienvenido "+lnombres[posCliente]+" "+lapellidos[posCliente]);
@@ -730,7 +968,12 @@ public class Taller02021 {
 		System.out.println("\tSALIENDO DEL MENU CLIENTE");
 	}
 
-
+	/**
+	 * main function, calls all other subprograms
+	 * @param args
+	 * @throws FileNotFoundException
+	 */
+	
 	public static void main(String[] args) throws IOException {
 		int cantListas = 200;
 		String [] lnombres = new String[200];
@@ -828,6 +1071,21 @@ public class Taller02021 {
 
 	}
 	
+	/**
+	 * this function overwrites the data used in the system and saves it in txt files
+	 * @param matrizMañana
+	 * @param matrizTarde
+	 * @param listaPaseMovilidad
+	 * @param cantClientes
+	 * @param cantPeliculas
+	 * @param lnombres
+	 * @param lapellidos
+	 * @param lruts
+	 * @param lcontraseñas
+	 * @param lsaldos
+	 */
+	
+
 	public static void sobreescribir(boolean [][] matrizMañana,boolean [][] matrizTarde,String [] listaPaseMovilidad,int cantClientes,int cantPeliculas,String [] lnombres,String [] lapellidos,String [] lruts,String [] lcontraseñas,int [] lsaldos) throws IOException {
 		ArchivoSalida arch1 = new ArchivoSalida("clientes.txt");
 		for(int i=0;i<cantClientes;i++) {
